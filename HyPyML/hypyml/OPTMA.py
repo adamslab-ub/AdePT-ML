@@ -129,15 +129,60 @@ class OPTMA(torch.nn.Module):
         self.models_physics = []
         self.args = []
         self.arch = architecture
+        self.model_ref = []
         # self.params = []
         for i in architecture: 
             if i["Type"] == 'Physics': 
                 self.models_physics.append(Physics.apply)
+                self.model_ref.append(['Physics', len(self.models_physics)-1 ])
             elif i["Type"] == "MLP": 
                 self.models_mlp.append(MLP(i["config"]))
+                self.model_ref.append(['MLP', len(self.models_mlp)-1])
             elif i["Type"] == "CNN": 
                 self.models_cnn.append(CNN(i["config"]))
+                self.model_ref.append(['CNN', len(self.models_cnn)-1])
             self.args.append(i["args"])
+    
+    def fwd_till(self,x,end_block):
+        return self.fwd_selective(x,start_block=0, end_block=end_block)
+    
+    def fwd_from(self,x,start_block):
+        return self.fwd_selective(x,start_block=start_block,end_block=len(self.arch)-1)
+    
+    def fwd_selective(self,x,start_block,end_block):
+        """
+        Runs inference from any specified start module in architecture to any end point
+        """
+        out = x
+        phy_count = 0
+        mlp_count = 0
+        cnn_count = 0
+        
+        assert end_block < len(self.arch), "Max possible value of end_block is %d, but recieved %d" %(len(self.arch)-1, end_block)
+
+        for i in range(start_block, end_block): 
+            ## Choosing the correct model from list
+            count = self.model_ref[i][0]
+            if self.arch[i]["Type"] == "Physics":
+                model = self.models_physics[count]
+                if self.args[i] != None:
+                    out = model(out,self.arch[i]['Forward'],self.arch[i]['Jacobian'], x[:,self.args[i]])
+                else: 
+                    out = model(out,self.arch[i]['Forward'],self.arch[i]['Jacobian'])
+            elif self.arch[i]["Type"] == "CNN" : 
+                model = self.models_cnn[count]
+                if self.args[i] != None:
+                    out = model(torch.hstack((x[:,self.args[i]],out)))
+                else:
+                    out = model(out)
+            else: 
+                model = self.models_mlp[count]
+                if self.args[i] != None:
+                    out = model(torch.hstack((x[:,self.args[i]],out)))
+                else:
+                    out = model(out)
+        return out
+
     # @staticmethod
     def forward(self,x):
         out = x

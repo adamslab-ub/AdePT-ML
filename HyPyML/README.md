@@ -1,5 +1,4 @@
 # OPTMA Documentation
-
 The following document describes usage of the OPTMA python library.
 
 ## Requirements: 
@@ -46,12 +45,3 @@ scheduler = torch.optim.lr_scheduler.StepLR(optimizer=optimizer,step_size=30 ,ga
 loss_fn = torch.nn.MSELoss()
 model, train_loss, test_loss = train_model(train_loader, test_loader, model, optimizer, scheduler, loss_fn, c.filename, c.epochs)
 ```
-
-## Using OPTMA Model for Prediction
-```
-output = model(input)
-```
-
-
-
-

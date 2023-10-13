@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "hypyml"
+version = "0.1.0"
+description = ""
+authors = ["ManaswinOddiraju"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+jax = "^0.2.21"
+torch = "^1.9.1"
+numpy = "^1.21.1"
+scipy = "^1.7.1"
+pandas = "^1.3.1"
+plotly = "^5.1.0"
+joblib = "^1.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

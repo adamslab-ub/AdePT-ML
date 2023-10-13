@@ -1,5 +1,5 @@
 import numpy as np
-from OPTMA import *
+from src.OPTMA import *
 import config1 as c
 import plotly.graph_objects as go
 
