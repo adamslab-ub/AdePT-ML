@@ -2,7 +2,7 @@ import numpy as np
 import torch.utils.data
 # import matplotlib.pyplot as plt
 import time
-from src.OPTMA import *
+from hypyml.OPTMA import *
 import config1 as c
 c.filename = 'No_Args'
 trainset = np.load(c.trainset)

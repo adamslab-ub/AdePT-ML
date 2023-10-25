@@ -1,5 +1,16 @@
-# Hybrid Python Machine Learning Library (HyPyML) Documentation:
+# ADAMS Lab: Hybrid Python Machine Learning Library (HyPyML) Documentation:
 The following document describes usage of the HyPyML python library.
+
+
+## To Do:
+### Programming
+- [ ] Fix requirements
+- [ ] Add train, load and save to class attributes
+- [ ] Add ability to input custom PyTorch nn classes
+- [ ] For each module, optionally specify the order of input and output. Default is just serial
+### Documentation
+- [ ] Add documentation to every class allowing for the future use of sphinx.
+- [ ] Update the sample script and example documentation
 
 ## Installation
 Installing with the built wheel (Pre-built wheel available for Ubuntu 22.04 based distros)
