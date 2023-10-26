@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hypyml"
-version = "0.1.0"
+version = "0.1.4"
 description = "A High-Level PyTorch and JAX based Library for Hybrid Physics-Informed Machine Learning Models"
 authors = ["ManaswinOddiraju"]
 readme = "README.md"
