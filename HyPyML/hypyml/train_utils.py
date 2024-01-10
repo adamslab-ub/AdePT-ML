@@ -1,11 +1,16 @@
 import os
 import torch
+from dataclasses import asdict
+from joblib import load
 from torch.utils.tensorboard import SummaryWriter
 import numpy as np
 from hypyml import configs
-from hypyml import model
+from hypyml import HybridModel
 
-def train_step(model, optimizer, loss_fn, scheduler=None):
+
+def train_step(
+    model: HybridModel, optimizer: torch.optim.Optimizer, loss_fn, scheduler=None
+):
     # Builds function that performs a step in the train loop
     def train_step(x, y, test=False):
         if not test:
@@ -27,53 +32,58 @@ def train_step(model, optimizer, loss_fn, scheduler=None):
     return train_step
 
 
-def train_model(
-    train_loader, test_loader, optimizer, loss_fn, scheduler, filename, epochs
+def train(
+    model, train_loader, test_loader, optimizer, loss_fn, scheduler, filename, epochs
 ):
-"""
-Training Function.
+    """
+    Training Function.
 
-:param torch.Torch_Dataloader train_loader: Torch Dataloader with training samples
-:param torch.Torch_Dataloader test_loader: Torch Dataloader with validation samples
-:param optimizer: Initialized Torch Optimizer
-:param loss_fn: Loss function for training
-:param scheduler: Learning rate scheduler
-:param filename: File name for saving the trained model
-:param epochs: Number of training epochs
+    Parameters
+    ----------
+    train_loader : torch.Torch_Dataloader
+        Torch Dataloader with training samples.
 
-:return: Tuple containing the trained model, training loss, and validation loss
-:rtype: tuple
-"""
-    
-    data_dir = os.path.join(os.getcwd(), "Models/Training_History_%s" % filename)
+    test_loader : torch.Torch_Dataloader
+        Torch Dataloader with validation samples.
+
+    optimizer : torch.optim.Optimizer
+        Initialized Torch Optimizer.
+
+    loss_fn : callable
+        Loss function for training.
+
+    scheduler : torch.optim.lr_scheduler
+        Learning rate scheduler.
+
+    filename : str
+        File name for saving the trained model.
+
+    epochs : int
+        Number of training epochs.
+
+    Returns
+    -------
+        Trained Hybrid Model.
+    """
+
+    data_dir = os.path.join(os.getcwd(), f"Training_History_{filename}")
     if not os.path.exists(data_dir):
         os.system("mkdir %s" % data_dir)
-    with SummaryWriter(log_dir=data_dir) as writer: 
-        train_step_obj = train_step(optimizer, loss_fn, scheduler)
+    with SummaryWriter(log_dir=data_dir) as writer:
+        train_step_obj = train_step(model, optimizer, loss_fn, scheduler)
         for epoch in range(epochs):
             batch_losses = []
             for x_batch, y_batch in train_loader:
                 loss = train_step_obj(x_batch, y_batch)
                 batch_losses.append(loss)
-            writer.add_scalar("Loss/train",np.mean(batch_losses),epoch)
+            writer.add_scalar("Loss/train", np.mean(batch_losses), epoch)
             batch_losses = []
             for x_batch, y_batch in test_loader:
                 loss = train_step_obj(x_batch, y_batch, test=True)
                 batch_losses.append(loss)
-            writer.add_scalar("Loss/test",np.mean(batch_losses),epoch)
-            print(
-                "epoch",
-                epoch,
-                "training loss",
-                training_loss[-1],
-                "test loss",
-                test_loss[-1],
-            )
+            writer.add_scalar("Loss/test", np.mean(batch_losses), epoch)
             if epoch % 50 == 0:
-                torch.save(
-                    model.state_dict(), "%s/Model_%d.pt" % (data_dir, epoch)
-                )
+                torch.save(model.state_dict(), "%s/Model_%d.pt" % (data_dir, epoch))
         torch.save(model.state_dict(), data_dir + "/Model_final.pt")
-        dump(model.arch,
-            "%s/Training_History.joblib" % data_dir,
-        )
+
+    return model

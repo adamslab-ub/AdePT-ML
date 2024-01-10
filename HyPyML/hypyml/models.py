@@ -16,24 +16,15 @@ class MLP(torch.nn.Module):
     """
     Multilayer Perceptron (MLP) neural network model.
 
-    :param dict config: Configuration dictionary containing model parameters.
-        - "Hidden_layer_size" (int): Size of the hidden layers.
-        - "D_in" (int): Number of input dimensions.
-        - "Num_layers" (int): Number of hidden layers.
-        - "D_out" (int): Number of output dimensions.
+    Attributes
+    ----------
+    config : Instance of MLPConfig dataclass.
 
-    :ivar torch.nn.ModuleList layers: List of hidden layers in the MLP.
-    :ivar torch.nn.BatchNorm1d norm: Batch normalization layer.
-    :ivar torch.nn.Linear linear_in: Input linear layer.
-    :ivar torch.nn.Linear linear_out: Output linear layer.
-    :ivar torch.nn.LeakyReLU nl1: Leaky ReLU activation function.
-    :ivar torch.nn.Tanh nl2: Hyperbolic tangent activation function.
-    :ivar torch.nn.Sigmoid nl3: Sigmoid activation function.
-
-    .. note::
-        This class implements a Multilayer Perceptron (MLP) neural network model.
-        It takes a configuration dictionary with parameters such as hidden layer size,
-        input and output dimensions, and the number of hidden layers.
+    Note
+    ----
+    This class implements a Multilayer Perceptron (MLP) neural network model.
+    It takes a configuration dictionary with parameters such as hidden layer size,
+    input and output dimensions, and the number of hidden layers.
     """
 
     def __init__(self, config: configs.MLPConfig):
@@ -65,32 +56,29 @@ class MLP(torch.nn.Module):
 
 
 class Physics(torch.autograd.Function):
+    """Custom Autograd function to enable backpropagation on Custom Physics Models.
+
+    Attributes:
+    config: Instance of PhysicsConfig.
+    """
+
     @staticmethod
     def forward(ctx, input, forward_fun, jacobian_fun, args=None):
-        if torch.cuda.is_available():
-            device = "cuda"
-        else:
-            device = "cpu"
-        # ctx.needs_input_grad = (True,False)
         ctx.save_for_backward(input, args)
         ctx.jacobian_fun = jacobian_fun
+        input = input.detach().cpu().numpy()
         if args != None:
             out = forward_fun(input, args)
+            out = torch.Tensor(out).to(configs.DEVICE)
             return out
         else:
             out = forward_fun(input)
+            out = torch.Tensor(out).to(configs.DEVICE)
             return out
 
     @staticmethod
     def backward(ctx, grad_output):
-        if torch.cuda.is_available():
-            device = "cuda"
-        else:
-            device = "cpu"
-        (
-            input,
-            args,
-        ) = ctx.saved_tensors
+        input, args = ctx.saved_tensors
         jacobian_fun = ctx.jacobian_fun
         jac_final = None
         if ctx.needs_input_grad[0]:
@@ -98,8 +86,10 @@ class Physics(torch.autograd.Function):
             if args != None:
                 args = args.detach().cpu().numpy()
                 jac_final = jacobian_fun(input, args)
-                jac_final = torch.Tensor(jac_final).to(device)
-                grad_final = torch.zeros(input.shape[0], input.shape[1]).to(device)
+                jac_final = torch.Tensor(jac_final).to(configs.DEVICE)
+                grad_final = torch.zeros(input.shape[0], input.shape[1]).to(
+                    configs.DEVICE
+                )
                 grad_output = grad_output.reshape(input.shape[0], -1)
                 for i in range(grad_final.shape[0]):
                     grad_final[i, :] = torch.matmul(
@@ -109,8 +99,10 @@ class Physics(torch.autograd.Function):
                 return grad_final, None, None, None
             else:
                 jac_final = jacobian_fun(input)
-                jac_final = torch.Tensor(jac_final).to(device)
-                grad_final = torch.zeros(input.shape[0], input.shape[1]).to(device)
+                jac_final = torch.Tensor(jac_final).to(configs.DEVICE)
+                grad_final = torch.zeros(input.shape[0], input.shape[1]).to(
+                    configs.DEVICE
+                )
                 grad_output = grad_output.reshape(input.shape[0], -1)
                 for i in range(grad_final.shape[0]):
                     grad_final[i, :] = torch.matmul(

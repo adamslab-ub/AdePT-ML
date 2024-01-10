@@ -3,6 +3,11 @@ from typing import NewType, Callable, Optional
 import torch
 import typeddict
 
+if torch.cuda.is_available():
+    DEVICE = "cuda"
+else:
+    DEVICE = "cpu"
+
 
 @dataclasses.dataclass
 class MLPConfig:
@@ -28,11 +33,6 @@ class MLPConfig:
 
     activation_functions : str
         String representation of the activation functions used in the MLP.
-
-    Note
-    ----
-    This class serves as a configuration class for the Multilayer Perceptron (MLP) model.
-    It defines various parameters that can be used to customize the architecture of the MLP.
     """
 
     num_input_dim: int
@@ -54,14 +54,6 @@ class PhysicsConfig:
 
     jacobian_func : Callable[[torch.Tensor], torch.Tensor]
         Function to compute the Jacobian of the physics model.
-
-    arg_dimensions : tuple[int, ...]
-        List of integer dimensions representing the arguments of the physics functions.
-
-    Note
-    ----
-    This class serves as a configuration class for physics-related functions.
-    It defines various parameters that can be used to configure the behavior of the physics model.
     """
 
     forward_func: Callable[[torch.Tensor], torch.Tensor]
@@ -72,8 +64,24 @@ ModelConfig = NewType("ModelConfig", [MLPConfig | PhysicsConfig])
 
 
 @dataclasses.dataclass
-class EnsembleConfig:
-    """Config for Ensemble Models."""
+class HybridConfig:
+    """
+    Config for Ensemble Models.
+
+    Attributes
+    ----------
+    models : dict
+        Dictionary containing Modelname as the key and an instance of ModelConfigs as the value.
+    io_overrides : dict
+        By default, the Ensemble model operates in serial mode, where the output of the preceding model
+        is used as the input for the current model.
+        Setting this dictionary to a non-empty value will override that behavior.
+        If a model doesn't take the output of the preceding model as input or requires additional inputs,
+        the names of those models should be the keys in this dictionary.
+        The corresponding values should be tuples containing the names of models whose output needs to be provided to this model.
+        Use "Input" as the value if the input to this model is the same as the original input to the hybrid model.
+
+    """
 
     models: dict[str, ModelConfig]
-    non_serial_inputs: Optional[dict[str, str]] = None
+    io_overrides: Optional[dict[str, tuple[str, ...]]] = None

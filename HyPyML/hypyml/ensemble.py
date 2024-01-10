@@ -24,72 +24,76 @@ class HybridModel(torch.nn.Module):
     config.
     """
 
-    def __init__(self, config: dict[str, configs.ModelConfig]):
+    def __init__(self, config: configs.HybridConfig):
         super(HybridModel, self).__init__()
         self.models_nn = torch.nn.ModuleDict()
         self.models_physics = {}
-        self.unmodified_inputs = []
         self.config = config
-        self.interm_inputs = {}
-        self.interm_outputs = {}
         # self.model_ids =
-        for model_name in config:
-            if isinstance(config[model_name], configs.PhysicsConfig):
+        for model_name in config.models:
+            if isinstance(config.models[model_name], configs.PhysicsConfig):
                 self.models_physics[model_name] = models.Physics.apply
-            elif isinstance(config[model_name], configs.MLPConfig):
-                self.models_mlp[model_name] = models.MLP(config[model_name])
-            if model_name in config.non_serial_inputs.keys():
-                assert (
-                    config.non_serial_inputs[model_name] in config.models.keys()
-                    or self.config.non_serial_inputs[model_name] == "Input"
-                ), f"No model named {config.non_serial_inputs[model_name]} in models dict"
-                self.interm_inputs[config.non_serial_inputs[model_name]] = None
-                self.interm_outputs[model_name] = None
+            elif isinstance(config.models[model_name], configs.MLPConfig):
+                self.models_nn[model_name] = models.MLP(config.models[model_name])
+        io_map = {
+            v: k
+            for (v, k) in zip(
+                config.models.keys(), ["Input"] + list(config.models.keys())[:-1]
+            )
+        }
+        if config.io_overrides:
+            to_save = []
+            for entry in config.io_overrides.keys():
+                io_map[entry] = config.io_overrides[entry]
+                to_save.append(entry)
+                to_save += config.io_overrides[entry]
+            to_save = list(set(to_save))
+            self.interim_data = {i: None for i in to_save}
+            used_inputs = []
+            for i in io_map.values():
+                if isinstance(i, tuple):
+                    used_inputs += list(i)
+                elif isinstance(i, str):
+                    used_inputs.append(i)
+                else:
+                    raise TypeError(
+                        f"Values in io_overrides need to be tuple or str not {type(i)}"
+                    )
+            print(self.interim_data.keys())
+            used_inputs = set(used_inputs)
+            self.outputs = list(set(config.models.keys()) - used_inputs)
 
     def forward(self, x):
-        """
-        Helper function to run inference on one constituent model.
-        """
+        """Function to run inference on the hybrid model."""
         current_input = x
-        for model_name in self.config.models:
-            if model_name in self.config.non_serial_inputs.keys():
-                if self.config.non_serial_inputs[model_name] != "Input":
-                    current_input = self.interm_inputs[
-                        self.config.non_serial_inputs[model_name]
-                    ]
-                else:
-                    current_input = x
+        for count, model_name in enumerate(self.config.models):
+            if self.config.io_overrides and count > 0:
+                if model_name in self.config.io_overrides.keys():
+                    if self.config.io_overrides[model_name] != "Input":
+                        current_input = self.interim_data[
+                            self.config.io_overrides[model_name]
+                        ]
+            elif count > 0:
+                current_input = out
+
             if model_name in self.models_nn.keys():
                 cur_model = self.models_nn[model_name]
-                if self.config.models[model_name].args != None:
-                    out = cur_model(
-                        torch.hstack(
-                            (x[:, self.config.models[model_name].args], current_input)
-                        )
-                    )
-                else:
-                    out = cur_model(current_input)
+                out = cur_model(current_input)
             elif model_name in self.models_physics.keys():
                 cur_model = self.models_physics[model_name]
-                if self.config[model_name].arg_dimensions != None:
-                    out = cur_model(
-                        current_input,
-                        self.config[model_name].forward_func,
-                        self.config[model_name].jacobian_func,
-                        x[:, self.config.models[model_name].args],
-                    )
-                else:
-                    out = cur_model(
-                        current_input,
-                        self.config.models[model_name].forward_func,
-                        self.config.models[model_name].jacobian_func,
-                    )
-            if model_name in self.config.non_serial_inputs.keys():
-                self.interm_outputs[model_name] = out
-
-        if self.config.non_serial_inputs:
+                out = cur_model(
+                    current_input,
+                    self.config.models[model_name].forward_func,
+                    self.config.models[model_name].jacobian_func,
+                )
+            if self.config.io_overrides:
+                if model_name in self.config.io_overrides.keys():
+                    self.interim_data[model_name] = out
+        if self.config.io_overrides:
             output = 0
-            for i in self.interm_outputs:
-                output += self.interm_outputs[i]
+            for i in self.outputs:
+                output += self.interim_data[i]
+        else:
+            output = out
 
         return output
