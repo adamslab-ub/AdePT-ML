@@ -13,8 +13,8 @@ class TestHyPyML(unittest.TestCase):
             num_output_dim=5,
             activation_functions="leakyrelu",
         )
-        model = models.MLP(self.mlp_config)
-        x = torch.rand((4, 2))
+        model = models.MLP(self.mlp_config).to(configs.DEVICE)
+        x = torch.rand((4, 2)).to(configs.DEVICE)
         y = model(x)
         assert y.shape[-1] == 5
 
@@ -24,7 +24,8 @@ class TestHyPyML(unittest.TestCase):
             jacobian_func=lambda x: np.diag(2 * x),
         )
         model = models.Physics.apply
-        x = torch.rand((4, 2))
+        x = torch.rand((4, 2)).to(configs.DEVICE)
+
         y = model(x, self.phy_config.forward_func, self.phy_config.jacobian_func)
         assert y.shape[0] == x.shape[0]
         pass
@@ -42,36 +43,40 @@ class TestHyPyML(unittest.TestCase):
             models={"Physics_1": phy_1, "Physics_2": phy_2},
         )
         model = HybridModel(config)
-        x = torch.rand((4, 2))
+        x = torch.rand((4, 2)).to(configs.DEVICE)
+
         y = model(x).detach().cpu().numpy()
         x = x.detach().cpu().numpy()
 
         assert np.sum(y - 4 * np.sum(x**2, axis=1)) == 0
 
-    # def test_ensemble_parallel(self):
-    #     phy_1 = configs.PhysicsConfig(
-    #         forward_func=lambda x: np.sum(x**2, axis=1),
-    #         jacobian_func=lambda x: np.diag(2 * x),
-    #     )
-    #     phy_2 = configs.PhysicsConfig(
-    #         forward_func=lambda x: np.sum(x, axis=1),
-    #         jacobian_func=lambda x: np.diag(2 * x),
-    #     )
-    #     config = configs.HybridConfig(
-    #         models={"Physics_1": phy_1, "Physics_2": phy_2},
-    #         io_overrides={"Physics_2": ("Input")},
-    #     )
-    #     model = HybridModel(config)
-    #     x = torch.rand((4, 2))
-    #     y = model(x).detach().cpu().numpy()
+    def test_ensemble_parallel(self):
+        phy_1 = configs.PhysicsConfig(
+            forward_func=lambda x: np.sum(x**2, axis=1),
+            jacobian_func=lambda x: np.diag(2 * x),
+        )
+        phy_2 = configs.PhysicsConfig(
+            forward_func=lambda x: np.sum(x, axis=1),
+            jacobian_func=lambda x: np.diag(2 * x),
+        )
+        config = configs.HybridConfig(
+            models={"Physics_1": phy_1, "Physics_2": phy_2},
+            io_overrides={"Physics_2": ["Input"]},
+        )
+        model = HybridModel(config)
+        x = torch.rand((4, 2))
+        y = model(x).detach().cpu().numpy()
 
-    #     assert np.sum(
-    #         y
-    #         - (
-    #             torch.sum(x**2, dim=1).detach().numpy()
-    #             + torch.sum(x, dim=1).detach().numpy()
-    #         )
-    #     )
+        assert (
+            np.sum(
+                y
+                - (
+                    torch.sum(x**2, dim=1).detach().numpy()
+                    + torch.sum(x, dim=1).detach().numpy()
+                )
+            )
+            == 0
+        )
 
     def test_train_serial(self):
         mlp_config = configs.MLPConfig(
@@ -88,7 +93,7 @@ class TestHyPyML(unittest.TestCase):
         config = configs.HybridConfig(
             models={"MLP": mlp_config},
         )
-        model = HybridModel(config)
+        model = HybridModel(config).to(configs.DEVICE)
         x_test = torch.rand(4, 2).to(configs.DEVICE)
         y_test = torch.rand(4, 2).to(configs.DEVICE)
         x_train = torch.rand(4, 2).to(configs.DEVICE)

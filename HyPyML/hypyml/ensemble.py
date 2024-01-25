@@ -1,4 +1,5 @@
 from platform import architecture
+from networkx import to_numpy_array
 import torch
 import torch.nn
 from hypyml import models, configs
@@ -31,14 +32,20 @@ class HybridModel(torch.nn.Module):
         self.config = config
         # self.model_ids =
         for model_name in config.models:
+            if isinstance(config.models[model_name], torch.nn.Module):
+                self.models_nn[model_name] = config.models[model_name].to(
+                    configs.DEVICE
+                )
             if isinstance(config.models[model_name], configs.PhysicsConfig):
                 self.models_physics[model_name] = models.Physics.apply
             elif isinstance(config.models[model_name], configs.MLPConfig):
-                self.models_nn[model_name] = models.MLP(config.models[model_name])
+                self.models_nn[model_name] = models.MLP(config.models[model_name]).to(
+                    configs.DEVICE
+                )
         io_map = {
             v: k
             for (v, k) in zip(
-                config.models.keys(), ["Input"] + list(config.models.keys())[:-1]
+                list(config.models.keys()), ["Input"] + list(config.models.keys())[:-1]
             )
         }
         if config.io_overrides:
@@ -47,32 +54,33 @@ class HybridModel(torch.nn.Module):
                 io_map[entry] = config.io_overrides[entry]
                 to_save.append(entry)
                 to_save += config.io_overrides[entry]
-            to_save = list(set(to_save))
-            self.interim_data = {i: None for i in to_save}
+
             used_inputs = []
             for i in io_map.values():
-                if isinstance(i, tuple):
-                    used_inputs += list(i)
+                if isinstance(i, list):
+                    used_inputs += i
                 elif isinstance(i, str):
                     used_inputs.append(i)
                 else:
                     raise TypeError(
-                        f"Values in io_overrides need to be tuple or str not {type(i)}"
+                        f"Values in io_overrides need to be list or str not {type(i)}"
                     )
-            print(self.interim_data.keys())
             used_inputs = set(used_inputs)
             self.outputs = list(set(config.models.keys()) - used_inputs)
+            to_save = list(set(to_save)) + self.outputs
+            self.interim_data = {i: None for i in to_save}
 
     def forward(self, x):
         """Function to run inference on the hybrid model."""
         current_input = x
+        if self.config.io_overrides:
+            self.interim_data["Input"] = x
         for count, model_name in enumerate(self.config.models):
             if self.config.io_overrides and count > 0:
                 if model_name in self.config.io_overrides.keys():
-                    if self.config.io_overrides[model_name] != "Input":
-                        current_input = self.interim_data[
-                            self.config.io_overrides[model_name]
-                        ]
+                    for inp in self.config.io_overrides[model_name]:
+                        current_input = self.interim_data[inp]
+
             elif count > 0:
                 current_input = out
 
@@ -87,12 +95,13 @@ class HybridModel(torch.nn.Module):
                     self.config.models[model_name].jacobian_func,
                 )
             if self.config.io_overrides:
-                if model_name in self.config.io_overrides.keys():
+                if model_name in self.interim_data.keys():
                     self.interim_data[model_name] = out
         if self.config.io_overrides:
-            output = 0
-            for i in self.outputs:
-                output += self.interim_data[i]
+            if model_name in self.config.io_overrides.keys():
+                output = 0
+                for i in self.outputs:
+                    output += self.interim_data[i]
         else:
             output = out
 

@@ -63,16 +63,16 @@ class Physics(torch.autograd.Function):
     """
 
     @staticmethod
-    def forward(ctx, input, forward_fun, jacobian_fun, args=None):
-        ctx.save_for_backward(input, args)
+    def forward(ctx, x, forward_fun, jacobian_fun, args=None):
+        ctx.save_for_backward(x, args)
         ctx.jacobian_fun = jacobian_fun
-        input = input.detach().cpu().numpy()
+        x = x.detach().cpu().numpy()
         if args != None:
-            out = forward_fun(input, args)
+            out = forward_fun(x, args)
             out = torch.Tensor(out).to(configs.DEVICE)
             return out
         else:
-            out = forward_fun(input)
+            out = forward_fun(x)
             out = torch.Tensor(out).to(configs.DEVICE)
             return out
 

@@ -10,20 +10,22 @@ The following document describes usage of the HyPyML python library.
 - [ ] Update the sample script and example documentation -->
 
 ## Installation
+
+
 Installing with the built wheel (Pre-built wheel available for Ubuntu 22.04 based distros)
 ```
 pip install dist/hypyml-x.x.x-py3-none-any.whl
 ```
-Building wheel using poetry
+Building wheel using [poetry](https://python-poetry.org/).
  
 When installing on a OS other than the one specified above, the wheel can be built using the following command after which the same installation command is to be used.
 
 ```
 cd HyPyML
-poetry build HyPyML
+poetry build
 ```
 
-## Requirements: 
+## Requirements (Automatically installed if the above installation command is used): 
 1. Google JAX (https://github.com/google/jax)
 2. PyTorch (https://pytorch.org/)
 3. Joblib (https://joblib.readthedocs.io/en/latest/)

@@ -1,5 +1,5 @@
 import dataclasses
-from typing import NewType, Callable, Optional
+from typing import NewType, Callable, Optional, List, Any
 import torch
 import typeddict
 
@@ -83,5 +83,5 @@ class HybridConfig:
 
     """
 
-    models: dict[str, ModelConfig]
-    io_overrides: Optional[dict[str, tuple[str, ...]]] = None
+    models: dict[str, ModelConfig | torch.nn.Module]
+    io_overrides: Optional[dict[str, List[str]]] = None
