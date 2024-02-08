@@ -67,21 +67,30 @@ def train(
     """
 
     data_dir = os.path.join(os.getcwd(), f"Training_History_{filename}")
+    try:
+        runs = max(
+            [int(f.name.split("_")[-1]) for f in os.scandir(data_dir) if f.is_dir()]
+        )
+    except:
+        runs = 0
     if not os.path.exists(data_dir):
         os.system("mkdir %s" % data_dir)
-    with SummaryWriter(log_dir=data_dir) as writer:
+    with SummaryWriter(log_dir=f"{data_dir}/run_{runs+1}") as writer:
         train_step_obj = train_step(model, optimizer, loss_fn, scheduler)
         for epoch in range(epochs):
-            batch_losses = []
+            train_batch_losses = []
             for x_batch, y_batch in train_loader:
                 loss = train_step_obj(x_batch, y_batch)
-                batch_losses.append(loss)
-            writer.add_scalar("Loss/train", np.mean(batch_losses), epoch)
-            batch_losses = []
+                train_batch_losses.append(loss)
+            writer.add_scalar("Loss/train", np.mean(train_batch_losses), epoch)
+            test_batch_losses = []
             for x_batch, y_batch in test_loader:
                 loss = train_step_obj(x_batch, y_batch, test=True)
-                batch_losses.append(loss)
-            writer.add_scalar("Loss/test", np.mean(batch_losses), epoch)
+                test_batch_losses.append(loss)
+            writer.add_scalar("Loss/test", np.mean(test_batch_losses), epoch)
+            print(
+                f"Train Loss {np.mean(train_batch_losses)} Test Loss {np.mean(test_batch_losses)}"
+            )
             if epoch % 50 == 0:
                 torch.save(model.state_dict(), "%s/Model_%d.pt" % (data_dir, epoch))
         torch.save(model.state_dict(), data_dir + "/Model_final.pt")
