@@ -33,10 +33,17 @@ def train_step(
 
 
 def train(
-    model, train_loader, test_loader, optimizer, loss_fn, scheduler, filename, epochs
+    model,
+    train_loader,
+    test_loader,
+    optimizer,
+    loss_fn,
+    scheduler,
+    filename,
+    epochs,
+    print_training_loss=True,
 ):
-    """
-    Training Function.
+    """Training Function.
 
     Parameters
     ----------
@@ -60,6 +67,10 @@ def train(
 
     epochs : int
         Number of training epochs.
+
+    print_training_loss: bool
+        Option to toggle printing epoch loss.
+
 
     Returns
     -------
@@ -88,9 +99,10 @@ def train(
                 loss = train_step_obj(x_batch, y_batch, test=True)
                 test_batch_losses.append(loss)
             writer.add_scalar("Loss/test", np.mean(test_batch_losses), epoch)
-            print(
-                f"Train Loss {np.mean(train_batch_losses)} Test Loss {np.mean(test_batch_losses)}"
-            )
+            if print_training_loss:
+                print(
+                    f"Train Loss {np.mean(train_batch_losses)} Test Loss {np.mean(test_batch_losses)}"
+                )
             if epoch % 50 == 0:
                 torch.save(model.state_dict(), "%s/Model_%d.pt" % (data_dir, epoch))
         torch.save(model.state_dict(), data_dir + "/Model_final.pt")

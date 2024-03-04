@@ -78,6 +78,21 @@ class TestHyPyML(unittest.TestCase):
             == 0
         )
 
+    def test_custom_module(self):
+        class cust_module(torch.nn.Module):
+            def __init__(self):
+                super(cust_module, self).__init__()
+                self.input = torch.nn.Linear(10, 10)
+                self.output = torch.nn.Linear(10, 1)
+
+            def forward(self, x):
+                return self.output(self.input(x))
+
+        model = cust_module().to(configs.DEVICE)
+        input = torch.rand((4, 10)).to(configs.DEVICE)
+        output = model(input)
+        assert output.shape[-1] == 1
+
     def test_train_serial(self):
         mlp_config = configs.MLPConfig(
             num_input_dim=2,

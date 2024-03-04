@@ -1,7 +1,6 @@
 import dataclasses
-from typing import NewType, Callable, Optional, List, Any
+from typing import NewType, Callable, Optional, List
 import torch
-import typeddict
 
 if torch.cuda.is_available():
     DEVICE = "cuda"
