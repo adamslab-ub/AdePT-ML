@@ -42,6 +42,7 @@ def train(
     filename,
     epochs,
     print_training_loss=True,
+    save_frequency=50,
 ):
     """Training Function.
 
@@ -71,6 +72,9 @@ def train(
     print_training_loss: bool
         Option to toggle printing epoch loss.
 
+    save_frequency: int
+        Number of epochs per which to save the model parameters to disk.
+
 
     Returns
     -------
@@ -78,15 +82,16 @@ def train(
     """
 
     data_dir = os.path.join(os.getcwd(), f"Training_History_{filename}")
+    if not os.path.exists(data_dir):
+        os.system("mkdir %s" % data_dir)
     try:
         runs = max(
             [int(f.name.split("_")[-1]) for f in os.scandir(data_dir) if f.is_dir()]
         )
     except:
         runs = 0
-    if not os.path.exists(data_dir):
-        os.system("mkdir %s" % data_dir)
-    with SummaryWriter(log_dir=f"{data_dir}/run_{runs+1}") as writer:
+    current_data_dir = f"{data_dir}/run_{runs+1}"
+    with SummaryWriter(log_dir=current_data_dir) as writer:
         train_step_obj = train_step(model, optimizer, loss_fn, scheduler)
         for epoch in range(epochs):
             train_batch_losses = []
@@ -103,8 +108,10 @@ def train(
                 print(
                     f"Train Loss {np.mean(train_batch_losses)} Test Loss {np.mean(test_batch_losses)}"
                 )
-            if epoch % 50 == 0:
-                torch.save(model.state_dict(), "%s/Model_%d.pt" % (data_dir, epoch))
-        torch.save(model.state_dict(), data_dir + "/Model_final.pt")
+            if epoch % save_frequency == 0:
+                torch.save(
+                    model.state_dict(), "%s/Model_%d.pt" % (current_data_dir, epoch)
+                )
+        torch.save(model.state_dict(), current_data_dir + "/Model_final.pt")
 
     return model
