@@ -64,11 +64,15 @@ class Physics(torch.autograd.Function):
 
     @staticmethod
     def forward(ctx, x, forward_fun, jacobian_fun, args=None):
-        ctx.save_for_backward(x, args)
+        if args:
+            ctx.save_for_backward(x, *args)
+        else:
+            ctx.save_for_backward(x)
         ctx.jacobian_fun = jacobian_fun
         x = x.detach().cpu().numpy()
         if args != None:
-            out = forward_fun(x, args)
+            args = [tmp_args.detach().cpu().numpy() for tmp_args in args]
+            out = forward_fun(x, *args)
             out = torch.Tensor(out).to(configs.DEVICE)
             return out
         else:
@@ -78,24 +82,19 @@ class Physics(torch.autograd.Function):
 
     @staticmethod
     def backward(ctx, grad_output):
-        input, args = ctx.saved_tensors
+        input = ctx.saved_tensors[0]
+        args = ctx.saved_tensors[1:]
         jacobian_fun = ctx.jacobian_fun
         jac_final = None
         if ctx.needs_input_grad[0]:
             input = input.detach().cpu().numpy()
             if args != None:
-                args = args.detach().cpu().numpy()
-                jac_final = jacobian_fun(input, args)
+                args = [tmp_args.detach().cpu().numpy() for tmp_args in args]
+                jac_final = jacobian_fun(input, *args)
                 jac_final = torch.Tensor(jac_final).to(configs.DEVICE)
-                grad_final = torch.zeros(input.shape[0], input.shape[1]).to(
-                    configs.DEVICE
-                )
-                grad_output = grad_output.reshape(input.shape[0], -1)
-                for i in range(grad_final.shape[0]):
-                    grad_final[i, :] = torch.matmul(
-                        grad_output[i, :].reshape(1, -1),
-                        jac_final[i].reshape(-1, input.shape[1]),
-                    )
+                jac_final = jac_final.reshape(input.shape[0], -1, input.shape[1])
+                grad_output = grad_output.reshape(input.shape[0], -1, 1)
+                grad_final = torch.matmul(grad_output, jac_final)
                 return grad_final, None, None, None
             else:
                 jac_final = jacobian_fun(input)

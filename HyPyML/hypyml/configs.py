@@ -1,6 +1,7 @@
 import dataclasses
-from typing import NewType, Callable, Optional, List
+from typing import NewType, Callable, Optional, Union
 import torch
+
 
 if torch.cuda.is_available():
     DEVICE = "cuda"
@@ -59,7 +60,7 @@ class PhysicsConfig:
     jacobian_func: Callable[[torch.Tensor], torch.Tensor]
 
 
-ModelConfig = NewType("ModelConfig", [MLPConfig | PhysicsConfig])
+ModelConfig = Union[MLPConfig, PhysicsConfig]
 
 
 @dataclasses.dataclass
@@ -69,18 +70,18 @@ class HybridConfig:
 
     Attributes
     ----------
-    models : dict
-        Dictionary containing Modelname as the key and an instance of ModelConfigs as the value.
-    io_overrides : dict
-        By default, the Ensemble model operates in serial mode, where the output of the preceding model
-        is used as the input for the current model.
-        Setting this dictionary to a non-empty value will override that behavior.
-        If a model doesn't take the output of the preceding model as input or requires additional inputs,
-        the names of those models should be the keys in this dictionary.
-        The corresponding values should be tuples containing the names of models whose output needs to be provided to this model.
-        Use "Input" as the value if the input to this model is the same as the original input to the hybrid model.
+    models: dict
+        Contains Modelname as keys and an instance of ModelConfigs as values.
 
+    model_inputs: dict
+        By default, the Ensemble model operates sequentially, using the output of the preceding model as input for the next.
+        Setting this dict to a non-empty value overrides that behavior.
+        Keys are model names; values are dicts specifying input customization.
+        Each inner dict holds model names as keys and specifies how to stack inputs:
+        - 'None' stacks the entire tensor.
+        - A list of ints stacks only specified dimensions.
+        Use "Input" if the input to this model matches the hybrid model's original input.
     """
 
     models: dict[str, ModelConfig | torch.nn.Module]
-    io_overrides: Optional[dict[str, List[str]]] = None
+    model_inputs: Optional[dict[str, dict[str, list[int] | None]]] = None

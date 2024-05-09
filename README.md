@@ -1,16 +1,16 @@
 # ADAMS Lab: Hybrid Python Machine Learning Library (HyPyML) Documentation:
 The following document describes usage of the HyPyML python library.
 
-<!-- ## To Do:
+<!-- <!-- ## To Do: -->
 ### Features
-- [ ] Add ability to input custom PyTorch nn classes
-- [ ] For each module, optionally specify the order of input and output. Default is just serial
-### Documentation
-- [ ] Add documentation to every class allowing for the future use of sphinx.
-- [ ] Update the sample script and example documentation -->
-
+- [x] Add ability to input custom PyTorch nn classes
+- [x] For each module, optionally specify the order of input and output. Default is just serial
+- [ ] Allow tracking custom loss functions with tensorboard. If loss fn returns a tuple then total loss would be to add them together 
+- [ ] Have all forward methods require an "arg" input
+- [ ] Args will be a dict with batched tensors.
+- [ ] Add custom dataloader to deal with dicts.
+- [ ] Add model save frequency to train config.
 ## Installation
-
 
 Installing with the built wheel (Pre-built wheel available for Ubuntu 22.04 based distros)
 ```

@@ -12,9 +12,9 @@ def train_step(
     model: HybridModel, optimizer: torch.optim.Optimizer, loss_fn, scheduler=None
 ):
     # Builds function that performs a step in the train loop
-    def train_step(x, y, test=False):
+    def train_step(x, y, args, test=False):
         if not test:
-            yhat = model.forward(x)
+            yhat = model.forward(x, args)
             loss = loss_fn(yhat, y)  # torch.mean(torch.abs(yhat-y))
             optimizer.zero_grad()
             loss.backward()
@@ -24,7 +24,7 @@ def train_step(
         else:
             a = model.eval()
             with torch.no_grad():
-                yhat = a(x)
+                yhat = a(x, args)
                 loss = loss_fn(yhat, y)
         return loss.item()
 
@@ -91,17 +91,31 @@ def train(
     except:
         runs = 0
     current_data_dir = f"{data_dir}/run_{runs+1}"
+    cur_settings = ""
+    # for i in asdict(model.config) :
     with SummaryWriter(log_dir=current_data_dir) as writer:
         train_step_obj = train_step(model, optimizer, loss_fn, scheduler)
         for epoch in range(epochs):
             train_batch_losses = []
-            for x_batch, y_batch in train_loader:
-                loss = train_step_obj(x_batch, y_batch)
+            for data in train_loader:
+                x_batch = data[0]
+                y_batch = data[1]
+                if len(data) > 2:
+                    args = data[2:]
+                else:
+                    args = None
+                loss = train_step_obj(x_batch, y_batch, args)
                 train_batch_losses.append(loss)
             writer.add_scalar("Loss/train", np.mean(train_batch_losses), epoch)
             test_batch_losses = []
-            for x_batch, y_batch in test_loader:
-                loss = train_step_obj(x_batch, y_batch, test=True)
+            for data in test_loader:
+                x_batch = data[0]
+                y_batch = data[1]
+                if len(data) > 2:
+                    args = data[2:]
+                else:
+                    args = None
+                loss = train_step_obj(x_batch, y_batch, args, test=True)
                 test_batch_losses.append(loss)
             writer.add_scalar("Loss/test", np.mean(test_batch_losses), epoch)
             if print_training_loss:

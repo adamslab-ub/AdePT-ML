@@ -32,51 +32,44 @@ class TestHyPyML(unittest.TestCase):
 
     def test_ensemble_serial(self):
         phy_1 = configs.PhysicsConfig(
-            forward_func=lambda x: np.sum(x**2, axis=1),
+            forward_func=lambda x: np.sum(x**2, axis=1).reshape(-1, 1),
             jacobian_func=lambda x: np.diag(2 * x),
         )
-        phy_2 = configs.PhysicsConfig(
-            forward_func=lambda x: 4 * x,
-            jacobian_func=lambda x: np.diag(2 * x),
+        mlp_1 = configs.MLPConfig(
+            num_input_dim=1,
+            num_hidden_dim=2,
+            num_hidden_layers=2,
+            num_output_dim=5,
+            activation_functions="leakyrelu",
         )
         config = configs.HybridConfig(
-            models={"Physics_1": phy_1, "Physics_2": phy_2},
+            models={"Physics_1": phy_1, "MLP_1": mlp_1},
         )
         model = HybridModel(config)
-        x = torch.rand((4, 2)).to(configs.DEVICE)
+        x = torch.rand((4, 4)).to(configs.DEVICE)
 
         y = model(x).detach().cpu().numpy()
         x = x.detach().cpu().numpy()
 
-        assert np.sum(y - 4 * np.sum(x**2, axis=1)) == 0
+        assert y.shape[1] == 5
 
-    def test_ensemble_parallel(self):
+    def test_ensemble_hybrid(self):
         phy_1 = configs.PhysicsConfig(
-            forward_func=lambda x: np.sum(x**2, axis=1),
+            forward_func=lambda x: x**2,
             jacobian_func=lambda x: np.diag(2 * x),
         )
         phy_2 = configs.PhysicsConfig(
-            forward_func=lambda x: np.sum(x, axis=1),
+            forward_func=lambda x: 10 * x,
             jacobian_func=lambda x: np.diag(2 * x),
         )
         config = configs.HybridConfig(
             models={"Physics_1": phy_1, "Physics_2": phy_2},
-            io_overrides={"Physics_2": ["Input"]},
+            model_inputs={"Physics_2": {"Input": None, "Physics_1": [0, 1]}},
         )
         model = HybridModel(config)
         x = torch.rand((4, 2))
         y = model(x).detach().cpu().numpy()
-
-        assert (
-            np.sum(
-                y
-                - (
-                    torch.sum(x**2, dim=1).detach().numpy()
-                    + torch.sum(x, dim=1).detach().numpy()
-                )
-            )
-            == 0
-        )
+        assert y.shape[1] == 2 * x.shape[1]
 
     def test_custom_module(self):
         class cust_module(torch.nn.Module):
@@ -102,25 +95,27 @@ class TestHyPyML(unittest.TestCase):
             activation_functions="leakyrelu",
         )
         phy_2 = configs.PhysicsConfig(
-            forward_func=lambda x: 4 * x,
-            jacobian_func=lambda x: 4 * np.ones((2, x.shape[1])),
+            forward_func=lambda x, y: 4 * x,
+            jacobian_func=lambda x, y: 4 * np.ones((2, x.shape[1])),
         )
         config = configs.HybridConfig(
-            models={"MLP": mlp_config},
+            models={"MLP": mlp_config, "Physics": phy_2},
         )
         model = HybridModel(config).to(configs.DEVICE)
         x_test = torch.rand(4, 2).to(configs.DEVICE)
         y_test = torch.rand(4, 2).to(configs.DEVICE)
+        z_test = torch.rand(4, 2).to(configs.DEVICE)
         x_train = torch.rand(4, 2).to(configs.DEVICE)
         y_train = torch.rand(4, 2).to(configs.DEVICE)
+        z_train = torch.rand(4, 2).to(configs.DEVICE)
         test_loader = torch.utils.data.DataLoader(
-            torch.utils.data.TensorDataset(x_test, y_test),
+            torch.utils.data.TensorDataset(x_test, y_test, z_test),
             batch_size=2,
             shuffle=True,
             drop_last=True,
         )
         train_loader = torch.utils.data.DataLoader(
-            torch.utils.data.TensorDataset(x_train, y_train),
+            torch.utils.data.TensorDataset(x_train, y_train, z_train),
             batch_size=2,
             shuffle=True,
             drop_last=True,
