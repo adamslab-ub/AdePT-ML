@@ -1,40 +1,23 @@
 # ADAMS Lab: Hybrid Python Machine Learning Library (HyPyML) Documentation:
-The following document describes usage of the HyPyML python library.
 
-<!-- <!-- ## To Do: -->
+This is a convienience library built on top of PyTorch to enable easy integration and training of hybrid models involving physics and deep learning modules. 
+
 ### Features
-- [x] Add ability to input custom PyTorch nn classes
-- [x] For each module, optionally specify the order of input and output. Default is just serial
-- [ ] Allow tracking custom loss functions with tensorboard. If loss fn returns a tuple then total loss would be to add them together 
-- [ ] Have all forward methods require an "arg" input
-- [ ] Args will be a dict with batched tensors.
-- [ ] Add custom dataloader to deal with dicts.
-- [ ] Add model save frequency to train config.
+1. Pre-defined Modules and configs for physics and MLP architectures.
+2. Physics Module accepts numpy arrays as outputs.
+3. Ability to input custom PyTorch nn classes
+4. Ensemble Module allows easy integration of constituent physics and ML modules for simple inference and training.
+5. Auto log training data with tensorboard.
+
 ## Installation
-
-Installing with the built wheel (Pre-built wheel available for Ubuntu 22.04 based distros)
+Installing with pip
 ```
-pip install dist/hypyml-x.x.x-py3-none-any.whl
+pip install hypyml
 ```
-Building wheel using [poetry](https://python-poetry.org/).
- 
-When installing on a OS other than the one specified above, the wheel can be built using the following command after which the same installation command is to be used.
-
-```
-cd HyPyML
-poetry build
-```
-
 ## Requirements (Automatically installed if the above installation command is used): 
-1. Google JAX (https://github.com/google/jax)
-2. PyTorch (https://pytorch.org/)
-3. Joblib (https://joblib.readthedocs.io/en/latest/)
+1. PyTorch (https://pytorch.org/)
+2. Joblib (https://joblib.readthedocs.io/en/latest/) (For loading and saving model parameters)
 
-## Package Classes:
-This package offers 2 modules (MLP and Physics) that can be used as part of the hybrid model. 
-The MLP class is a torch.nn module that is initialized by an instance of MLPConfig, while the Physics module is a custom torch autograd function.
+## Examples:
+Refer to the tests file. Addtional examples will be added soon.
 
-The hybrid model class needs an instance of configs.HybridConfig to be initialized and each of the constituent modules also need an instance of their configs.
-
-## Training 
-Please refer to the **tests.py** file provided.

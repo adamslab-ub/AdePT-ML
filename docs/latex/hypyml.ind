@@ -1,0 +1,25 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter H
+  \item \spxentry{hypyml.configs}
+    \subitem \spxentry{module}, \hyperpage{1}
+  \item \spxentry{hypyml.ensemble}
+    \subitem \spxentry{module}, \hyperpage{1}
+  \item \spxentry{hypyml.models}
+    \subitem \spxentry{module}, \hyperpage{1}
+  \item \spxentry{hypyml.train\_utils}
+    \subitem \spxentry{module}, \hyperpage{1}
+
+  \indexspace
+  \bigletter M
+  \item \spxentry{module}
+    \subitem \spxentry{hypyml.configs}, \hyperpage{1}
+    \subitem \spxentry{hypyml.ensemble}, \hyperpage{1}
+    \subitem \spxentry{hypyml.models}, \hyperpage{1}
+    \subitem \spxentry{hypyml.train\_utils}, \hyperpage{1}
+
+\end{sphinxtheindex}

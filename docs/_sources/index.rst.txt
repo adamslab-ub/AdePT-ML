@@ -1,0 +1,37 @@
+.. HyPyML documentation master file, created by
+   sphinx-quickstart on Fri May 24 16:47:28 2024.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to HyPyML's documentation!
+==================================
+
+This is a convienience library built on top of PyTorch to enable easy integration and training of hybrid models involving physics and deep learning modules. 
+
+### Features
+1. Pre-defined Modules and configs for physics and MLP architectures.
+2. Physics Module accepts numpy arrays as outputs.
+3. Ability to input custom PyTorch nn classes
+4. Ensemble Module allows easy integration of constituent physics and ML modules for simple inference and training.
+5. Auto log training data with tensorboard.
+
+   .. automodule:: hypyml.configs
+   :members:
+   .. automodule:: hypyml.models
+   :members:
+   .. automodule:: hypyml.ensemble
+   :members:
+   .. automodule:: hypyml.train_utils
+   :members:
+   .. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
