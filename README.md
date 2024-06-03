@@ -1,4 +1,4 @@
-# Auto-differentiable embedding of Physics and Torch Machine Learning (AdePT-ML) Documentation:
+# Auto-differentiable embedding of Physics and Torch Machine Learning (AdePT-ML):
 
 This is a convienience library built on top of PyTorch to enable easy integration and training of hybrid models involving physics and deep learning modules. 
 
