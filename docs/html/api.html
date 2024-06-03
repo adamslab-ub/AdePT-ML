@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>API Reference &#8212; HyPyML 1.0 documentation</title>
+    <title>API Reference &#8212; AdePT-ML 1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
     <script src="_static/documentation_options.js?v=f2a433a1"></script>
@@ -13,7 +13,7 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Welcome to HyPyML’s documentation!" href="index.html" />
+    <link rel="prev" title="Welcome to AdePT-ML’s documentation!" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -35,9 +35,9 @@
 <h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h1>
 <section id="ensemble-model">
 <h2>Ensemble Model<a class="headerlink" href="#ensemble-model" title="Link to this heading">¶</a></h2>
-<dl class="py class" id="module-hypyml.ensemble">
-<dt class="sig sig-object py" id="hypyml.ensemble.HybridModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypyml.ensemble.</span></span><span class="sig-name descname"><span class="pre">HybridModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#hypyml.configs.HybridConfig" title="hypyml.configs.HybridConfig"><span class="pre">HybridConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypyml.ensemble.HybridModel" title="Link to this definition">¶</a></dt>
+<dl class="py class" id="module-adeptml.ensemble">
+<dt class="sig sig-object py" id="adeptml.ensemble.HybridModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.ensemble.</span></span><span class="sig-name descname"><span class="pre">HybridModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#adeptml.configs.HybridConfig" title="adeptml.configs.HybridConfig"><span class="pre">HybridConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.ensemble.HybridModel" title="Link to this definition">¶</a></dt>
 <dd><p>Torch Module for Serial Hybrid Physics Models.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -53,23 +53,23 @@
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="hypyml.ensemble.HybridModel.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phy_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypyml.ensemble.HybridModel.forward" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.ensemble.HybridModel.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phy_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.ensemble.HybridModel.forward" title="Link to this definition">¶</a></dt>
 <dd><p>Function to run inference on the hybrid model.</p>
 </dd></dl>
 
 </dd></dl>
 
 </section>
-<section id="module-hypyml.models">
-<span id="models"></span><h2>Models<a class="headerlink" href="#module-hypyml.models" title="Link to this heading">¶</a></h2>
+<section id="module-adeptml.models">
+<span id="models"></span><h2>Models<a class="headerlink" href="#module-adeptml.models" title="Link to this heading">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="hypyml.models.MLP">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypyml.models.</span></span><span class="sig-name descname"><span class="pre">MLP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#hypyml.configs.MLPConfig" title="hypyml.configs.MLPConfig"><span class="pre">MLPConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypyml.models.MLP" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.models.MLP">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.models.</span></span><span class="sig-name descname"><span class="pre">MLP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#adeptml.configs.MLPConfig" title="adeptml.configs.MLPConfig"><span class="pre">MLPConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.models.MLP" title="Link to this definition">¶</a></dt>
 <dd><p>Multilayer Perceptron (MLP) neural network model.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="hypyml.models.MLP.config">
-<span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#hypyml.models.MLP.config" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.models.MLP.config">
+<span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#adeptml.models.MLP.config" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Instance of MLPConfig dataclass.</p>
@@ -84,8 +84,8 @@ It takes a configuration dictionary with parameters such as hidden layer size,
 input and output dimensions, and the number of hidden layers.</p>
 </div>
 <dl class="py method">
-<dt class="sig sig-object py" id="hypyml.models.MLP.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypyml.models.MLP.forward" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.models.MLP.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.models.MLP.forward" title="Link to this definition">¶</a></dt>
 <dd><p>Forward pass of the MLP model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -103,36 +103,36 @@ input and output dimensions, and the number of hidden layers.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="hypyml.models.Physics">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypyml.models.</span></span><span class="sig-name descname"><span class="pre">Physics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypyml.models.Physics" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.models.Physics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.models.</span></span><span class="sig-name descname"><span class="pre">Physics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.models.Physics" title="Link to this definition">¶</a></dt>
 <dd><p>Custom Autograd function to enable backpropagation on Custom Physics Models.</p>
 <p>Attributes:
 config: Instance of PhysicsConfig.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="hypyml.models.Physics.backward">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypyml.models.Physics.backward" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.models.Physics.backward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.models.Physics.backward" title="Link to this definition">¶</a></dt>
 <dd><p>Define a formula for differentiating the operation with backward mode automatic differentiation.</p>
 <p>This function is to be overridden by all subclasses.
 (Defining this function is equivalent to defining the <code class="docutils literal notranslate"><span class="pre">vjp</span></code> function.)</p>
 <p>It must accept a context <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx</span></code> as the first argument, followed by
-as many outputs as the <a class="reference internal" href="#hypyml.models.Physics.forward" title="hypyml.models.Physics.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> returned (None will be passed in
+as many outputs as the <a class="reference internal" href="#adeptml.models.Physics.forward" title="adeptml.models.Physics.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> returned (None will be passed in
 for non tensor outputs of the forward function),
 and it should return as many tensors, as there were inputs to
-<a class="reference internal" href="#hypyml.models.Physics.forward" title="hypyml.models.Physics.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a>. Each argument is the gradient w.r.t the given output,
+<a class="reference internal" href="#adeptml.models.Physics.forward" title="adeptml.models.Physics.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a>. Each argument is the gradient w.r.t the given output,
 and each returned value should be the gradient w.r.t. the
 corresponding input. If an input is not a Tensor or is a Tensor not
 requiring grads, you can just pass None as a gradient for that input.</p>
 <p>The context can be used to retrieve tensors saved during the forward
 pass. It also has an attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx.needs_input_grad</span></code> as a tuple
 of booleans representing whether each input needs gradient. E.g.,
-<a class="reference internal" href="#hypyml.models.Physics.backward" title="hypyml.models.Physics.backward"><code class="xref py py-func docutils literal notranslate"><span class="pre">backward()</span></code></a> will have <code class="docutils literal notranslate"><span class="pre">ctx.needs_input_grad[0]</span> <span class="pre">=</span> <span class="pre">True</span></code> if the
-first input to <a class="reference internal" href="#hypyml.models.Physics.forward" title="hypyml.models.Physics.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> needs gradient computed w.r.t. the
+<a class="reference internal" href="#adeptml.models.Physics.backward" title="adeptml.models.Physics.backward"><code class="xref py py-func docutils literal notranslate"><span class="pre">backward()</span></code></a> will have <code class="docutils literal notranslate"><span class="pre">ctx.needs_input_grad[0]</span> <span class="pre">=</span> <span class="pre">True</span></code> if the
+first input to <a class="reference internal" href="#adeptml.models.Physics.forward" title="adeptml.models.Physics.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> needs gradient computed w.r.t. the
 output.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="hypyml.models.Physics.forward">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian_fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypyml.models.Physics.forward" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.models.Physics.forward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian_fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.models.Physics.forward" title="Link to this definition">¶</a></dt>
 <dd><p>Define the forward of the custom autograd Function.</p>
 <p>This function is to be overridden by all subclasses.
 There are two ways to define forward:</p>
@@ -177,15 +177,15 @@ if they are intended to be used for in <code class="docutils literal notranslate
 </dd></dl>
 
 </section>
-<section id="module-hypyml.configs">
-<span id="configs"></span><h2>Configs<a class="headerlink" href="#module-hypyml.configs" title="Link to this heading">¶</a></h2>
+<section id="module-adeptml.configs">
+<span id="configs"></span><h2>Configs<a class="headerlink" href="#module-adeptml.configs" title="Link to this heading">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="hypyml.configs.HybridConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypyml.configs.</span></span><span class="sig-name descname"><span class="pre">HybridConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#hypyml.configs.MLPConfig" title="hypyml.configs.MLPConfig"><span class="pre">MLPConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#hypyml.configs.PhysicsConfig" title="hypyml.configs.PhysicsConfig"><span class="pre">PhysicsConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Module</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypyml.configs.HybridConfig" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.HybridConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.configs.</span></span><span class="sig-name descname"><span class="pre">HybridConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#adeptml.configs.MLPConfig" title="adeptml.configs.MLPConfig"><span class="pre">MLPConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#adeptml.configs.PhysicsConfig" title="adeptml.configs.PhysicsConfig"><span class="pre">PhysicsConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Module</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.configs.HybridConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Config for Ensemble Models.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="hypyml.configs.HybridConfig.models">
-<span class="sig-name descname"><span class="pre">models</span></span><a class="headerlink" href="#hypyml.configs.HybridConfig.models" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.HybridConfig.models">
+<span class="sig-name descname"><span class="pre">models</span></span><a class="headerlink" href="#adeptml.configs.HybridConfig.models" title="Link to this definition">¶</a></dt>
 <dd><p>Contains Modelname as keys and an instance of ModelConfigs as values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -195,8 +195,8 @@ if they are intended to be used for in <code class="docutils literal notranslate
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="hypyml.configs.HybridConfig.model_inputs">
-<span class="sig-name descname"><span class="pre">model_inputs</span></span><a class="headerlink" href="#hypyml.configs.HybridConfig.model_inputs" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.HybridConfig.model_inputs">
+<span class="sig-name descname"><span class="pre">model_inputs</span></span><a class="headerlink" href="#adeptml.configs.HybridConfig.model_inputs" title="Link to this definition">¶</a></dt>
 <dd><p>By default, the Ensemble model operates sequentially, using the output of the preceding model as input for the next.
 Setting this dict to a non-empty value overrides that behavior.
 Keys are model names; values are dicts specifying input customization.
@@ -214,12 +214,12 @@ Use “Input” if the input to this model matches the hybrid model’s original
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="hypyml.configs.MLPConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypyml.configs.</span></span><span class="sig-name descname"><span class="pre">MLPConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_input_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hidden_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_output_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hidden_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_functions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypyml.configs.MLPConfig" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.MLPConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.configs.</span></span><span class="sig-name descname"><span class="pre">MLPConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_input_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hidden_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_output_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hidden_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_functions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.configs.MLPConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Configuration class for the Multilayer Perceptron (MLP) model.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="hypyml.configs.MLPConfig.layers">
-<span class="sig-name descname"><span class="pre">layers</span></span><a class="headerlink" href="#hypyml.configs.MLPConfig.layers" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.MLPConfig.layers">
+<span class="sig-name descname"><span class="pre">layers</span></span><a class="headerlink" href="#adeptml.configs.MLPConfig.layers" title="Link to this definition">¶</a></dt>
 <dd><p>Total number of layers in the MLP (including hidden and output layers).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -229,8 +229,8 @@ Use “Input” if the input to this model matches the hybrid model’s original
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="hypyml.configs.MLPConfig.num_input_dim">
-<span class="sig-name descname"><span class="pre">num_input_dim</span></span><a class="headerlink" href="#hypyml.configs.MLPConfig.num_input_dim" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.MLPConfig.num_input_dim">
+<span class="sig-name descname"><span class="pre">num_input_dim</span></span><a class="headerlink" href="#adeptml.configs.MLPConfig.num_input_dim" title="Link to this definition">¶</a></dt>
 <dd><p>Number of input dimensions to the MLP.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -240,8 +240,8 @@ Use “Input” if the input to this model matches the hybrid model’s original
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="hypyml.configs.MLPConfig.num_hidden_dim">
-<span class="sig-name descname"><span class="pre">num_hidden_dim</span></span><a class="headerlink" href="#hypyml.configs.MLPConfig.num_hidden_dim" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.MLPConfig.num_hidden_dim">
+<span class="sig-name descname"><span class="pre">num_hidden_dim</span></span><a class="headerlink" href="#adeptml.configs.MLPConfig.num_hidden_dim" title="Link to this definition">¶</a></dt>
 <dd><p>Number of hidden dimensions in each hidden layer.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -251,8 +251,8 @@ Use “Input” if the input to this model matches the hybrid model’s original
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="hypyml.configs.MLPConfig.num_output_dim">
-<span class="sig-name descname"><span class="pre">num_output_dim</span></span><a class="headerlink" href="#hypyml.configs.MLPConfig.num_output_dim" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.MLPConfig.num_output_dim">
+<span class="sig-name descname"><span class="pre">num_output_dim</span></span><a class="headerlink" href="#adeptml.configs.MLPConfig.num_output_dim" title="Link to this definition">¶</a></dt>
 <dd><p>Number of output dimensions from the MLP.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -262,8 +262,8 @@ Use “Input” if the input to this model matches the hybrid model’s original
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="hypyml.configs.MLPConfig.num_hidden_layers">
-<span class="sig-name descname"><span class="pre">num_hidden_layers</span></span><a class="headerlink" href="#hypyml.configs.MLPConfig.num_hidden_layers" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.MLPConfig.num_hidden_layers">
+<span class="sig-name descname"><span class="pre">num_hidden_layers</span></span><a class="headerlink" href="#adeptml.configs.MLPConfig.num_hidden_layers" title="Link to this definition">¶</a></dt>
 <dd><p>Number of hidden layers in the MLP.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -273,8 +273,8 @@ Use “Input” if the input to this model matches the hybrid model’s original
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="hypyml.configs.MLPConfig.activation_functions">
-<span class="sig-name descname"><span class="pre">activation_functions</span></span><a class="headerlink" href="#hypyml.configs.MLPConfig.activation_functions" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.MLPConfig.activation_functions">
+<span class="sig-name descname"><span class="pre">activation_functions</span></span><a class="headerlink" href="#adeptml.configs.MLPConfig.activation_functions" title="Link to this definition">¶</a></dt>
 <dd><p>String representation of the activation functions used in the MLP.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -286,12 +286,12 @@ Use “Input” if the input to this model matches the hybrid model’s original
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="hypyml.configs.PhysicsConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hypyml.configs.</span></span><span class="sig-name descname"><span class="pre">PhysicsConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forward_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypyml.configs.PhysicsConfig" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.PhysicsConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.configs.</span></span><span class="sig-name descname"><span class="pre">PhysicsConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forward_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.configs.PhysicsConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Configuration class for physics-related functions.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="hypyml.configs.PhysicsConfig.forward_func">
-<span class="sig-name descname"><span class="pre">forward_func</span></span><a class="headerlink" href="#hypyml.configs.PhysicsConfig.forward_func" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.PhysicsConfig.forward_func">
+<span class="sig-name descname"><span class="pre">forward_func</span></span><a class="headerlink" href="#adeptml.configs.PhysicsConfig.forward_func" title="Link to this definition">¶</a></dt>
 <dd><p>Forward function of the physics model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -301,8 +301,8 @@ Use “Input” if the input to this model matches the hybrid model’s original
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="hypyml.configs.PhysicsConfig.jacobian_func">
-<span class="sig-name descname"><span class="pre">jacobian_func</span></span><a class="headerlink" href="#hypyml.configs.PhysicsConfig.jacobian_func" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="adeptml.configs.PhysicsConfig.jacobian_func">
+<span class="sig-name descname"><span class="pre">jacobian_func</span></span><a class="headerlink" href="#adeptml.configs.PhysicsConfig.jacobian_func" title="Link to this definition">¶</a></dt>
 <dd><p>Function to compute the Jacobian of the physics model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -316,9 +316,9 @@ Use “Input” if the input to this model matches the hybrid model’s original
 </section>
 <section id="training-utils">
 <h2>Training Utils<a class="headerlink" href="#training-utils" title="Link to this heading">¶</a></h2>
-<dl class="py function" id="module-hypyml.train_utils">
-<dt class="sig sig-object py" id="hypyml.train_utils.train">
-<span class="sig-prename descclassname"><span class="pre">hypyml.train_utils.</span></span><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scheduler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_training_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hypyml.train_utils.train" title="Link to this definition">¶</a></dt>
+<dl class="py function" id="module-adeptml.train_utils">
+<dt class="sig sig-object py" id="adeptml.train_utils.train">
+<span class="sig-prename descclassname"><span class="pre">adeptml.train_utils.</span></span><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scheduler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_training_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.train_utils.train" title="Link to this definition">¶</a></dt>
 <dd><p>Training Function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -350,7 +350,7 @@ Use “Input” if the input to this model matches the hybrid model’s original
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">HyPyML</a></h1>
+<h1 class="logo"><a href="index.html">AdePT-ML</a></h1>
 
 
 
@@ -363,49 +363,49 @@ Use “Input” if the input to this model matches the hybrid model’s original
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#ensemble-model">Ensemble Model</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#hypyml.ensemble.HybridModel"><code class="docutils literal notranslate"><span class="pre">HybridModel</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.ensemble.HybridModel.forward"><code class="docutils literal notranslate"><span class="pre">HybridModel.forward()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adeptml.ensemble.HybridModel"><code class="docutils literal notranslate"><span class="pre">HybridModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.ensemble.HybridModel.forward"><code class="docutils literal notranslate"><span class="pre">HybridModel.forward()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-hypyml.models">Models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#hypyml.models.MLP"><code class="docutils literal notranslate"><span class="pre">MLP</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.models.MLP.config"><code class="docutils literal notranslate"><span class="pre">MLP.config</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.models.MLP.forward"><code class="docutils literal notranslate"><span class="pre">MLP.forward()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-adeptml.models">Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adeptml.models.MLP"><code class="docutils literal notranslate"><span class="pre">MLP</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.models.MLP.config"><code class="docutils literal notranslate"><span class="pre">MLP.config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.models.MLP.forward"><code class="docutils literal notranslate"><span class="pre">MLP.forward()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#hypyml.models.Physics"><code class="docutils literal notranslate"><span class="pre">Physics</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.models.Physics.backward"><code class="docutils literal notranslate"><span class="pre">Physics.backward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.models.Physics.forward"><code class="docutils literal notranslate"><span class="pre">Physics.forward()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adeptml.models.Physics"><code class="docutils literal notranslate"><span class="pre">Physics</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.models.Physics.backward"><code class="docutils literal notranslate"><span class="pre">Physics.backward()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.models.Physics.forward"><code class="docutils literal notranslate"><span class="pre">Physics.forward()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-hypyml.configs">Configs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#hypyml.configs.HybridConfig"><code class="docutils literal notranslate"><span class="pre">HybridConfig</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.configs.HybridConfig.models"><code class="docutils literal notranslate"><span class="pre">HybridConfig.models</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.configs.HybridConfig.model_inputs"><code class="docutils literal notranslate"><span class="pre">HybridConfig.model_inputs</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-adeptml.configs">Configs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adeptml.configs.HybridConfig"><code class="docutils literal notranslate"><span class="pre">HybridConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.HybridConfig.models"><code class="docutils literal notranslate"><span class="pre">HybridConfig.models</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.HybridConfig.model_inputs"><code class="docutils literal notranslate"><span class="pre">HybridConfig.model_inputs</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#hypyml.configs.MLPConfig"><code class="docutils literal notranslate"><span class="pre">MLPConfig</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.configs.MLPConfig.layers"><code class="docutils literal notranslate"><span class="pre">MLPConfig.layers</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.configs.MLPConfig.num_input_dim"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_input_dim</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.configs.MLPConfig.num_hidden_dim"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_hidden_dim</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.configs.MLPConfig.num_output_dim"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_output_dim</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.configs.MLPConfig.num_hidden_layers"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_hidden_layers</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.configs.MLPConfig.activation_functions"><code class="docutils literal notranslate"><span class="pre">MLPConfig.activation_functions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adeptml.configs.MLPConfig"><code class="docutils literal notranslate"><span class="pre">MLPConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.layers"><code class="docutils literal notranslate"><span class="pre">MLPConfig.layers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.num_input_dim"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_input_dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.num_hidden_dim"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_hidden_dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.num_output_dim"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_output_dim</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.num_hidden_layers"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_hidden_layers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.activation_functions"><code class="docutils literal notranslate"><span class="pre">MLPConfig.activation_functions</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#hypyml.configs.PhysicsConfig"><code class="docutils literal notranslate"><span class="pre">PhysicsConfig</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.configs.PhysicsConfig.forward_func"><code class="docutils literal notranslate"><span class="pre">PhysicsConfig.forward_func</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hypyml.configs.PhysicsConfig.jacobian_func"><code class="docutils literal notranslate"><span class="pre">PhysicsConfig.jacobian_func</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adeptml.configs.PhysicsConfig"><code class="docutils literal notranslate"><span class="pre">PhysicsConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.PhysicsConfig.forward_func"><code class="docutils literal notranslate"><span class="pre">PhysicsConfig.forward_func</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.PhysicsConfig.jacobian_func"><code class="docutils literal notranslate"><span class="pre">PhysicsConfig.jacobian_func</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#training-utils">Training Utils</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#hypyml.train_utils.train"><code class="docutils literal notranslate"><span class="pre">train()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adeptml.train_utils.train"><code class="docutils literal notranslate"><span class="pre">train()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -416,7 +416,7 @@ Use “Input” if the input to this model matches the hybrid model’s original
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Welcome to HyPyML’s documentation!</a></li>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to AdePT-ML’s documentation!</a></li>
   </ul></li>
 </ul>
 </div>

@@ -56,10 +56,9 @@
 % Set up styles of URL: it should be placed after hyperref.
 \urlstyle{same}
 
-\addto\captionsenglish{\renewcommand{\contentsname}{Contents:}}
 
 \usepackage{sphinxmessages}
-\setcounter{tocdepth}{1}
+
 
 
 
@@ -84,241 +83,87 @@
 \pagestyle{normal}
 \phantomsection\label{\detokenize{index::doc}}
 
-\index{module@\spxentry{module}!hypyml.configs@\spxentry{hypyml.configs}}\index{hypyml.configs@\spxentry{hypyml.configs}!module@\spxentry{module}}\index{HybridConfig (class in hypyml.configs)@\spxentry{HybridConfig}\spxextra{class in hypyml.configs}}
+
+\sphinxstepscope
+
+
+\chapter{API Reference}
+\label{\detokenize{api:api-reference}}\label{\detokenize{api::doc}}
+
+\section{Ensemble Model}
+\label{\detokenize{api:ensemble-model}}\index{module@\spxentry{module}!hypyml.ensemble@\spxentry{hypyml.ensemble}}\index{hypyml.ensemble@\spxentry{hypyml.ensemble}!module@\spxentry{module}}\index{HybridModel (class in hypyml.ensemble)@\spxentry{HybridModel}\spxextra{class in hypyml.ensemble}}\phantomsection\label{\detokenize{api:module-hypyml.ensemble}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.HybridConfig}}
+\phantomsection\label{\detokenize{api:hypyml.ensemble.HybridModel}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{hypyml.configs.}}\sphinxbfcode{\sphinxupquote{HybridConfig}}}{\sphinxparam{\DUrole{n}{models}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{dict\DUrole{p}{{[}}str\DUrole{p}{,}\DUrole{w}{ }{\hyperref[\detokenize{index:hypyml.configs.MLPConfig}]{\sphinxcrossref{MLPConfig}}}\DUrole{w}{ }\DUrole{p}{|}\DUrole{w}{ }{\hyperref[\detokenize{index:hypyml.configs.PhysicsConfig}]{\sphinxcrossref{PhysicsConfig}}}\DUrole{w}{ }\DUrole{p}{|}\DUrole{w}{ }Module\DUrole{p}{{]}}}}\sphinxparamcomma \sphinxparam{\DUrole{n}{model\_inputs}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{dict\DUrole{p}{{[}}str\DUrole{p}{,}\DUrole{w}{ }dict\DUrole{p}{{[}}str\DUrole{p}{,}\DUrole{w}{ }list\DUrole{p}{{[}}int\DUrole{p}{{]}}\DUrole{w}{ }\DUrole{p}{|}\DUrole{w}{ }None\DUrole{p}{{]}}\DUrole{p}{{]}}\DUrole{w}{ }\DUrole{p}{|}\DUrole{w}{ }None}\DUrole{w}{ }\DUrole{o}{=}\DUrole{w}{ }\DUrole{default_value}{None}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{hypyml.ensemble.}}\sphinxbfcode{\sphinxupquote{HybridModel}}}{\sphinxparam{\DUrole{n}{config}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{{\hyperref[\detokenize{api:hypyml.configs.HybridConfig}]{\sphinxcrossref{HybridConfig}}}}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
-Config for Ensemble Models.
-\index{models (hypyml.configs.HybridConfig attribute)@\spxentry{models}\spxextra{hypyml.configs.HybridConfig attribute}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.HybridConfig.models}}
-\pysigstartsignatures
-\pysigline{\sphinxbfcode{\sphinxupquote{models}}}
-\pysigstopsignatures
-\sphinxAtStartPar
-Contains Modelname as keys and an instance of ModelConfigs as values.
+Torch Module for Serial Hybrid Physics Models.
 \begin{quote}\begin{description}
-\sphinxlineitem{Type}
+\sphinxlineitem{Parameters}\begin{itemize}
+\item {} 
 \sphinxAtStartPar
-dict
+\sphinxstyleliteralstrong{\sphinxupquote{models\_mlp}} (\sphinxstyleliteralemphasis{\sphinxupquote{Torch module list}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{all MLP modules.}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{models\_cnn}} (\sphinxstyleliteralemphasis{\sphinxupquote{Torch module list}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{all CNN modules.}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{models\_physics}} (\sphinxstyleliteralemphasis{\sphinxupquote{Torch module list}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{all Physics modules.}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{unmodified\_inputs}} (\sphinxstyleliteralemphasis{\sphinxupquote{Indices}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{the inputs that are to be passed directly to the}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{model.}} (\sphinxstyleliteralemphasis{\sphinxupquote{model. These are appended to the outputs}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{the previous}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{architecture}} (\sphinxstyleliteralemphasis{\sphinxupquote{Dict with key corresponding to model name and value being a model}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{config.}}
+
+\end{itemize}
 
 \end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{model\_inputs (hypyml.configs.HybridConfig attribute)@\spxentry{model\_inputs}\spxextra{hypyml.configs.HybridConfig attribute}}
+\index{forward() (hypyml.ensemble.HybridModel method)@\spxentry{forward()}\spxextra{hypyml.ensemble.HybridModel method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.HybridConfig.model_inputs}}
+\phantomsection\label{\detokenize{api:hypyml.ensemble.HybridModel.forward}}
 \pysigstartsignatures
-\pysigline{\sphinxbfcode{\sphinxupquote{model\_inputs}}}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{forward}}}{\sphinxparam{\DUrole{n}{x}}\sphinxparamcomma \sphinxparam{\DUrole{n}{phy\_args}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
-By default, the Ensemble model operates sequentially, using the output of the preceding model as input for the next.
-Setting this dict to a non\sphinxhyphen{}empty value overrides that behavior.
-Keys are model names; values are dicts specifying input customization.
-Each inner dict holds model names as keys and specifies how to stack inputs:
-\sphinxhyphen{} ‘None’ stacks the entire tensor.
-\sphinxhyphen{} A list of ints stacks only specified dimensions.
-Use “Input” if the input to this model matches the hybrid model’s original input.
-\begin{quote}\begin{description}
-\sphinxlineitem{Type}
-\sphinxAtStartPar
-dict
-
-\end{description}\end{quote}
+Function to run inference on the hybrid model.
 
 \end{fulllineitems}
 
 
 \end{fulllineitems}
 
-\index{MLPConfig (class in hypyml.configs)@\spxentry{MLPConfig}\spxextra{class in hypyml.configs}}
+
+
+\section{Models}
+\label{\detokenize{api:module-hypyml.models}}\label{\detokenize{api:models}}\index{module@\spxentry{module}!hypyml.models@\spxentry{hypyml.models}}\index{hypyml.models@\spxentry{hypyml.models}!module@\spxentry{module}}\index{MLP (class in hypyml.models)@\spxentry{MLP}\spxextra{class in hypyml.models}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.MLPConfig}}
+\phantomsection\label{\detokenize{api:hypyml.models.MLP}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{hypyml.configs.}}\sphinxbfcode{\sphinxupquote{MLPConfig}}}{\sphinxparam{\DUrole{n}{num\_input\_dim}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{int}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num\_hidden\_dim}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{int}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num\_output\_dim}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{int}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num\_hidden\_layers}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{int}}\sphinxparamcomma \sphinxparam{\DUrole{n}{activation\_functions}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{str}}}{}
-\pysigstopsignatures
-\sphinxAtStartPar
-Configuration class for the Multilayer Perceptron (MLP) model.
-\index{layers (hypyml.configs.MLPConfig attribute)@\spxentry{layers}\spxextra{hypyml.configs.MLPConfig attribute}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.MLPConfig.layers}}
-\pysigstartsignatures
-\pysigline{\sphinxbfcode{\sphinxupquote{layers}}}
-\pysigstopsignatures
-\sphinxAtStartPar
-Total number of layers in the MLP (including hidden and output layers).
-\begin{quote}\begin{description}
-\sphinxlineitem{Type}
-\sphinxAtStartPar
-int
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{num\_input\_dim (hypyml.configs.MLPConfig attribute)@\spxentry{num\_input\_dim}\spxextra{hypyml.configs.MLPConfig attribute}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.MLPConfig.num_input_dim}}
-\pysigstartsignatures
-\pysigline{\sphinxbfcode{\sphinxupquote{num\_input\_dim}}}
-\pysigstopsignatures
-\sphinxAtStartPar
-Number of input dimensions to the MLP.
-\begin{quote}\begin{description}
-\sphinxlineitem{Type}
-\sphinxAtStartPar
-int
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{num\_hidden\_dim (hypyml.configs.MLPConfig attribute)@\spxentry{num\_hidden\_dim}\spxextra{hypyml.configs.MLPConfig attribute}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.MLPConfig.num_hidden_dim}}
-\pysigstartsignatures
-\pysigline{\sphinxbfcode{\sphinxupquote{num\_hidden\_dim}}}
-\pysigstopsignatures
-\sphinxAtStartPar
-Number of hidden dimensions in each hidden layer.
-\begin{quote}\begin{description}
-\sphinxlineitem{Type}
-\sphinxAtStartPar
-int
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{num\_output\_dim (hypyml.configs.MLPConfig attribute)@\spxentry{num\_output\_dim}\spxextra{hypyml.configs.MLPConfig attribute}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.MLPConfig.num_output_dim}}
-\pysigstartsignatures
-\pysigline{\sphinxbfcode{\sphinxupquote{num\_output\_dim}}}
-\pysigstopsignatures
-\sphinxAtStartPar
-Number of output dimensions from the MLP.
-\begin{quote}\begin{description}
-\sphinxlineitem{Type}
-\sphinxAtStartPar
-int
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{num\_hidden\_layers (hypyml.configs.MLPConfig attribute)@\spxentry{num\_hidden\_layers}\spxextra{hypyml.configs.MLPConfig attribute}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.MLPConfig.num_hidden_layers}}
-\pysigstartsignatures
-\pysigline{\sphinxbfcode{\sphinxupquote{num\_hidden\_layers}}}
-\pysigstopsignatures
-\sphinxAtStartPar
-Number of hidden layers in the MLP.
-\begin{quote}\begin{description}
-\sphinxlineitem{Type}
-\sphinxAtStartPar
-int
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{activation\_functions (hypyml.configs.MLPConfig attribute)@\spxentry{activation\_functions}\spxextra{hypyml.configs.MLPConfig attribute}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.MLPConfig.activation_functions}}
-\pysigstartsignatures
-\pysigline{\sphinxbfcode{\sphinxupquote{activation\_functions}}}
-\pysigstopsignatures
-\sphinxAtStartPar
-String representation of the activation functions used in the MLP.
-\begin{quote}\begin{description}
-\sphinxlineitem{Type}
-\sphinxAtStartPar
-str
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-
-\end{fulllineitems}
-
-\index{PhysicsConfig (class in hypyml.configs)@\spxentry{PhysicsConfig}\spxextra{class in hypyml.configs}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.PhysicsConfig}}
-\pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{hypyml.configs.}}\sphinxbfcode{\sphinxupquote{PhysicsConfig}}}{\sphinxparam{\DUrole{n}{forward\_func}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{Callable\DUrole{p}{{[}}\DUrole{p}{{[}}Tensor\DUrole{p}{{]}}\DUrole{p}{,}\DUrole{w}{ }Tensor\DUrole{p}{{]}}}}\sphinxparamcomma \sphinxparam{\DUrole{n}{jacobian\_func}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{Callable\DUrole{p}{{[}}\DUrole{p}{{[}}Tensor\DUrole{p}{{]}}\DUrole{p}{,}\DUrole{w}{ }Tensor\DUrole{p}{{]}}}}}{}
-\pysigstopsignatures
-\sphinxAtStartPar
-Configuration class for physics\sphinxhyphen{}related functions.
-\index{forward\_func (hypyml.configs.PhysicsConfig attribute)@\spxentry{forward\_func}\spxextra{hypyml.configs.PhysicsConfig attribute}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.PhysicsConfig.forward_func}}
-\pysigstartsignatures
-\pysigline{\sphinxbfcode{\sphinxupquote{forward\_func}}}
-\pysigstopsignatures
-\sphinxAtStartPar
-Forward function of the physics model.
-\begin{quote}\begin{description}
-\sphinxlineitem{Type}
-\sphinxAtStartPar
-Callable{[}{[}torch.Tensor{]}, torch.Tensor{]}
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-\index{jacobian\_func (hypyml.configs.PhysicsConfig attribute)@\spxentry{jacobian\_func}\spxextra{hypyml.configs.PhysicsConfig attribute}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.configs.PhysicsConfig.jacobian_func}}
-\pysigstartsignatures
-\pysigline{\sphinxbfcode{\sphinxupquote{jacobian\_func}}}
-\pysigstopsignatures
-\sphinxAtStartPar
-Function to compute the Jacobian of the physics model.
-\begin{quote}\begin{description}
-\sphinxlineitem{Type}
-\sphinxAtStartPar
-Callable{[}{[}torch.Tensor{]}, torch.Tensor{]}
-
-\end{description}\end{quote}
-
-\end{fulllineitems}
-
-
-\end{fulllineitems}
-
-\index{module@\spxentry{module}!hypyml.models@\spxentry{hypyml.models}}\index{hypyml.models@\spxentry{hypyml.models}!module@\spxentry{module}}\index{MLP (class in hypyml.models)@\spxentry{MLP}\spxextra{class in hypyml.models}}\phantomsection\label{\detokenize{index:module-hypyml.models}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.models.MLP}}
-\pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{hypyml.models.}}\sphinxbfcode{\sphinxupquote{MLP}}}{\sphinxparam{\DUrole{n}{config}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{{\hyperref[\detokenize{index:hypyml.configs.MLPConfig}]{\sphinxcrossref{MLPConfig}}}}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{hypyml.models.}}\sphinxbfcode{\sphinxupquote{MLP}}}{\sphinxparam{\DUrole{n}{config}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{{\hyperref[\detokenize{api:hypyml.configs.MLPConfig}]{\sphinxcrossref{MLPConfig}}}}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
 Multilayer Perceptron (MLP) neural network model.
 \index{config (hypyml.models.MLP attribute)@\spxentry{config}\spxextra{hypyml.models.MLP attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.models.MLP.config}}
+\phantomsection\label{\detokenize{api:hypyml.models.MLP.config}}
 \pysigstartsignatures
 \pysigline{\sphinxbfcode{\sphinxupquote{config}}}
 \pysigstopsignatures\begin{quote}\begin{description}
@@ -340,7 +185,7 @@ input and output dimensions, and the number of hidden layers.
 \index{forward() (hypyml.models.MLP method)@\spxentry{forward()}\spxextra{hypyml.models.MLP method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.models.MLP.forward}}
+\phantomsection\label{\detokenize{api:hypyml.models.MLP.forward}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{forward}}}{\sphinxparam{\DUrole{n}{x}}}{}
 \pysigstopsignatures
@@ -369,7 +214,7 @@ torch.Tensor
 \index{Physics (class in hypyml.models)@\spxentry{Physics}\spxextra{class in hypyml.models}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.models.Physics}}
+\phantomsection\label{\detokenize{api:hypyml.models.Physics}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{hypyml.models.}}\sphinxbfcode{\sphinxupquote{Physics}}}{\sphinxparam{\DUrole{o}{*}\DUrole{n}{args}}\sphinxparamcomma \sphinxparam{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
 \pysigstopsignatures
@@ -382,7 +227,7 @@ config: Instance of PhysicsConfig.
 \index{backward() (hypyml.models.Physics static method)@\spxentry{backward()}\spxextra{hypyml.models.Physics static method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.models.Physics.backward}}
+\phantomsection\label{\detokenize{api:hypyml.models.Physics.backward}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{static\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{backward}}}{\sphinxparam{\DUrole{n}{ctx}}\sphinxparamcomma \sphinxparam{\DUrole{n}{grad\_output}}}{}
 \pysigstopsignatures
@@ -395,10 +240,10 @@ This function is to be overridden by all subclasses.
 
 \sphinxAtStartPar
 It must accept a context \sphinxcode{\sphinxupquote{ctx}} as the first argument, followed by
-as many outputs as the {\hyperref[\detokenize{index:hypyml.models.Physics.forward}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{forward()}}}}} returned (None will be passed in
+as many outputs as the {\hyperref[\detokenize{api:hypyml.models.Physics.forward}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{forward()}}}}} returned (None will be passed in
 for non tensor outputs of the forward function),
 and it should return as many tensors, as there were inputs to
-{\hyperref[\detokenize{index:hypyml.models.Physics.forward}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{forward()}}}}}. Each argument is the gradient w.r.t the given output,
+{\hyperref[\detokenize{api:hypyml.models.Physics.forward}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{forward()}}}}}. Each argument is the gradient w.r.t the given output,
 and each returned value should be the gradient w.r.t. the
 corresponding input. If an input is not a Tensor or is a Tensor not
 requiring grads, you can just pass None as a gradient for that input.
@@ -407,8 +252,8 @@ requiring grads, you can just pass None as a gradient for that input.
 The context can be used to retrieve tensors saved during the forward
 pass. It also has an attribute \sphinxcode{\sphinxupquote{ctx.needs\_input\_grad}} as a tuple
 of booleans representing whether each input needs gradient. E.g.,
-{\hyperref[\detokenize{index:hypyml.models.Physics.backward}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{backward()}}}}} will have \sphinxcode{\sphinxupquote{ctx.needs\_input\_grad{[}0{]} = True}} if the
-first input to {\hyperref[\detokenize{index:hypyml.models.Physics.forward}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{forward()}}}}} needs gradient computed w.r.t. the
+{\hyperref[\detokenize{api:hypyml.models.Physics.backward}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{backward()}}}}} will have \sphinxcode{\sphinxupquote{ctx.needs\_input\_grad{[}0{]} = True}} if the
+first input to {\hyperref[\detokenize{api:hypyml.models.Physics.forward}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{forward()}}}}} needs gradient computed w.r.t. the
 output.
 
 \end{fulllineitems}
@@ -416,7 +261,7 @@ output.
 \index{forward() (hypyml.models.Physics static method)@\spxentry{forward()}\spxextra{hypyml.models.Physics static method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.models.Physics.forward}}
+\phantomsection\label{\detokenize{api:hypyml.models.Physics.forward}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{static\DUrole{w}{ }}}\sphinxbfcode{\sphinxupquote{forward}}}{\sphinxparam{\DUrole{n}{ctx}}\sphinxparamcomma \sphinxparam{\DUrole{n}{x}}\sphinxparamcomma \sphinxparam{\DUrole{n}{forward\_fun}}\sphinxparamcomma \sphinxparam{\DUrole{n}{jacobian\_fun}}\sphinxparamcomma \sphinxparam{\DUrole{n}{args}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
@@ -491,67 +336,238 @@ if they are intended to be used for in \sphinxcode{\sphinxupquote{jvp}}.
 
 \end{fulllineitems}
 
-\index{module@\spxentry{module}!hypyml.ensemble@\spxentry{hypyml.ensemble}}\index{hypyml.ensemble@\spxentry{hypyml.ensemble}!module@\spxentry{module}}\index{HybridModel (class in hypyml.ensemble)@\spxentry{HybridModel}\spxextra{class in hypyml.ensemble}}\phantomsection\label{\detokenize{index:module-hypyml.ensemble}}
+
+
+\section{Configs}
+\label{\detokenize{api:module-hypyml.configs}}\label{\detokenize{api:configs}}\index{module@\spxentry{module}!hypyml.configs@\spxentry{hypyml.configs}}\index{hypyml.configs@\spxentry{hypyml.configs}!module@\spxentry{module}}\index{HybridConfig (class in hypyml.configs)@\spxentry{HybridConfig}\spxextra{class in hypyml.configs}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.ensemble.HybridModel}}
+\phantomsection\label{\detokenize{api:hypyml.configs.HybridConfig}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{hypyml.ensemble.}}\sphinxbfcode{\sphinxupquote{HybridModel}}}{\sphinxparam{\DUrole{n}{config}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{{\hyperref[\detokenize{index:hypyml.configs.HybridConfig}]{\sphinxcrossref{HybridConfig}}}}}}{}
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{hypyml.configs.}}\sphinxbfcode{\sphinxupquote{HybridConfig}}}{\sphinxparam{\DUrole{n}{models}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{dict\DUrole{p}{{[}}str\DUrole{p}{,}\DUrole{w}{ }{\hyperref[\detokenize{api:hypyml.configs.MLPConfig}]{\sphinxcrossref{MLPConfig}}}\DUrole{w}{ }\DUrole{p}{|}\DUrole{w}{ }{\hyperref[\detokenize{api:hypyml.configs.PhysicsConfig}]{\sphinxcrossref{PhysicsConfig}}}\DUrole{w}{ }\DUrole{p}{|}\DUrole{w}{ }Module\DUrole{p}{{]}}}}\sphinxparamcomma \sphinxparam{\DUrole{n}{model\_inputs}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{dict\DUrole{p}{{[}}str\DUrole{p}{,}\DUrole{w}{ }dict\DUrole{p}{{[}}str\DUrole{p}{,}\DUrole{w}{ }list\DUrole{p}{{[}}int\DUrole{p}{{]}}\DUrole{w}{ }\DUrole{p}{|}\DUrole{w}{ }None\DUrole{p}{{]}}\DUrole{p}{{]}}\DUrole{w}{ }\DUrole{p}{|}\DUrole{w}{ }None}\DUrole{w}{ }\DUrole{o}{=}\DUrole{w}{ }\DUrole{default_value}{None}}}{}
 \pysigstopsignatures
 \sphinxAtStartPar
-Torch Module for Serial Hybrid Physics Models.
+Config for Ensemble Models.
+\index{models (hypyml.configs.HybridConfig attribute)@\spxentry{models}\spxextra{hypyml.configs.HybridConfig attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{api:hypyml.configs.HybridConfig.models}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{models}}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Contains Modelname as keys and an instance of ModelConfigs as values.
 \begin{quote}\begin{description}
-\sphinxlineitem{Parameters}\begin{itemize}
-\item {} 
+\sphinxlineitem{Type}
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{models\_mlp}} (\sphinxstyleliteralemphasis{\sphinxupquote{Torch module list}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{all MLP modules.}})
-
-\item {} 
-\sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{models\_cnn}} (\sphinxstyleliteralemphasis{\sphinxupquote{Torch module list}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{all CNN modules.}})
-
-\item {} 
-\sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{models\_physics}} (\sphinxstyleliteralemphasis{\sphinxupquote{Torch module list}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{all Physics modules.}})
-
-\item {} 
-\sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{unmodified\_inputs}} (\sphinxstyleliteralemphasis{\sphinxupquote{Indices}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{the inputs that are to be passed directly to the}})
-
-\item {} 
-\sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{model.}} (\sphinxstyleliteralemphasis{\sphinxupquote{model. These are appended to the outputs}}\sphinxstyleliteralemphasis{\sphinxupquote{ of }}\sphinxstyleliteralemphasis{\sphinxupquote{the previous}})
-
-\item {} 
-\sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{architecture}} (\sphinxstyleliteralemphasis{\sphinxupquote{Dict with key corresponding to model name and value being a model}})
-
-\item {} 
-\sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{config.}}
-
-\end{itemize}
+dict
 
 \end{description}\end{quote}
-\index{forward() (hypyml.ensemble.HybridModel method)@\spxentry{forward()}\spxextra{hypyml.ensemble.HybridModel method}}
+
+\end{fulllineitems}
+
+\index{model\_inputs (hypyml.configs.HybridConfig attribute)@\spxentry{model\_inputs}\spxextra{hypyml.configs.HybridConfig attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.ensemble.HybridModel.forward}}
+\phantomsection\label{\detokenize{api:hypyml.configs.HybridConfig.model_inputs}}
 \pysigstartsignatures
-\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{forward}}}{\sphinxparam{\DUrole{n}{x}}\sphinxparamcomma \sphinxparam{\DUrole{n}{phy\_args}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\pysigline{\sphinxbfcode{\sphinxupquote{model\_inputs}}}
 \pysigstopsignatures
 \sphinxAtStartPar
-Function to run inference on the hybrid model.
+By default, the Ensemble model operates sequentially, using the output of the preceding model as input for the next.
+Setting this dict to a non\sphinxhyphen{}empty value overrides that behavior.
+Keys are model names; values are dicts specifying input customization.
+Each inner dict holds model names as keys and specifies how to stack inputs:
+\sphinxhyphen{} ‘None’ stacks the entire tensor.
+\sphinxhyphen{} A list of ints stacks only specified dimensions.
+Use “Input” if the input to this model matches the hybrid model’s original input.
+\begin{quote}\begin{description}
+\sphinxlineitem{Type}
+\sphinxAtStartPar
+dict
+
+\end{description}\end{quote}
 
 \end{fulllineitems}
 
 
 \end{fulllineitems}
 
-\index{module@\spxentry{module}!hypyml.train\_utils@\spxentry{hypyml.train\_utils}}\index{hypyml.train\_utils@\spxentry{hypyml.train\_utils}!module@\spxentry{module}}\index{train() (in module hypyml.train\_utils)@\spxentry{train()}\spxextra{in module hypyml.train\_utils}}\phantomsection\label{\detokenize{index:module-hypyml.train_utils}}
+\index{MLPConfig (class in hypyml.configs)@\spxentry{MLPConfig}\spxextra{class in hypyml.configs}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{index:hypyml.train_utils.train}}
+\phantomsection\label{\detokenize{api:hypyml.configs.MLPConfig}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{hypyml.configs.}}\sphinxbfcode{\sphinxupquote{MLPConfig}}}{\sphinxparam{\DUrole{n}{num\_input\_dim}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{int}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num\_hidden\_dim}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{int}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num\_output\_dim}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{int}}\sphinxparamcomma \sphinxparam{\DUrole{n}{num\_hidden\_layers}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{int}}\sphinxparamcomma \sphinxparam{\DUrole{n}{activation\_functions}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{str}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Configuration class for the Multilayer Perceptron (MLP) model.
+\index{layers (hypyml.configs.MLPConfig attribute)@\spxentry{layers}\spxextra{hypyml.configs.MLPConfig attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{api:hypyml.configs.MLPConfig.layers}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{layers}}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Total number of layers in the MLP (including hidden and output layers).
+\begin{quote}\begin{description}
+\sphinxlineitem{Type}
+\sphinxAtStartPar
+int
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{num\_input\_dim (hypyml.configs.MLPConfig attribute)@\spxentry{num\_input\_dim}\spxextra{hypyml.configs.MLPConfig attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{api:hypyml.configs.MLPConfig.num_input_dim}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{num\_input\_dim}}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Number of input dimensions to the MLP.
+\begin{quote}\begin{description}
+\sphinxlineitem{Type}
+\sphinxAtStartPar
+int
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{num\_hidden\_dim (hypyml.configs.MLPConfig attribute)@\spxentry{num\_hidden\_dim}\spxextra{hypyml.configs.MLPConfig attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{api:hypyml.configs.MLPConfig.num_hidden_dim}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{num\_hidden\_dim}}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Number of hidden dimensions in each hidden layer.
+\begin{quote}\begin{description}
+\sphinxlineitem{Type}
+\sphinxAtStartPar
+int
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{num\_output\_dim (hypyml.configs.MLPConfig attribute)@\spxentry{num\_output\_dim}\spxextra{hypyml.configs.MLPConfig attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{api:hypyml.configs.MLPConfig.num_output_dim}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{num\_output\_dim}}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Number of output dimensions from the MLP.
+\begin{quote}\begin{description}
+\sphinxlineitem{Type}
+\sphinxAtStartPar
+int
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{num\_hidden\_layers (hypyml.configs.MLPConfig attribute)@\spxentry{num\_hidden\_layers}\spxextra{hypyml.configs.MLPConfig attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{api:hypyml.configs.MLPConfig.num_hidden_layers}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{num\_hidden\_layers}}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Number of hidden layers in the MLP.
+\begin{quote}\begin{description}
+\sphinxlineitem{Type}
+\sphinxAtStartPar
+int
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{activation\_functions (hypyml.configs.MLPConfig attribute)@\spxentry{activation\_functions}\spxextra{hypyml.configs.MLPConfig attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{api:hypyml.configs.MLPConfig.activation_functions}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{activation\_functions}}}
+\pysigstopsignatures
+\sphinxAtStartPar
+String representation of the activation functions used in the MLP.
+\begin{quote}\begin{description}
+\sphinxlineitem{Type}
+\sphinxAtStartPar
+str
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+\index{PhysicsConfig (class in hypyml.configs)@\spxentry{PhysicsConfig}\spxextra{class in hypyml.configs}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{api:hypyml.configs.PhysicsConfig}}
+\pysigstartsignatures
+\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class\DUrole{w}{ }}}\sphinxcode{\sphinxupquote{hypyml.configs.}}\sphinxbfcode{\sphinxupquote{PhysicsConfig}}}{\sphinxparam{\DUrole{n}{forward\_func}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{Callable\DUrole{p}{{[}}\DUrole{p}{{[}}Tensor\DUrole{p}{{]}}\DUrole{p}{,}\DUrole{w}{ }Tensor\DUrole{p}{{]}}}}\sphinxparamcomma \sphinxparam{\DUrole{n}{jacobian\_func}\DUrole{p}{:}\DUrole{w}{ }\DUrole{n}{Callable\DUrole{p}{{[}}\DUrole{p}{{[}}Tensor\DUrole{p}{{]}}\DUrole{p}{,}\DUrole{w}{ }Tensor\DUrole{p}{{]}}}}}{}
+\pysigstopsignatures
+\sphinxAtStartPar
+Configuration class for physics\sphinxhyphen{}related functions.
+\index{forward\_func (hypyml.configs.PhysicsConfig attribute)@\spxentry{forward\_func}\spxextra{hypyml.configs.PhysicsConfig attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{api:hypyml.configs.PhysicsConfig.forward_func}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{forward\_func}}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Forward function of the physics model.
+\begin{quote}\begin{description}
+\sphinxlineitem{Type}
+\sphinxAtStartPar
+Callable{[}{[}torch.Tensor{]}, torch.Tensor{]}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{jacobian\_func (hypyml.configs.PhysicsConfig attribute)@\spxentry{jacobian\_func}\spxextra{hypyml.configs.PhysicsConfig attribute}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{api:hypyml.configs.PhysicsConfig.jacobian_func}}
+\pysigstartsignatures
+\pysigline{\sphinxbfcode{\sphinxupquote{jacobian\_func}}}
+\pysigstopsignatures
+\sphinxAtStartPar
+Function to compute the Jacobian of the physics model.
+\begin{quote}\begin{description}
+\sphinxlineitem{Type}
+\sphinxAtStartPar
+Callable{[}{[}torch.Tensor{]}, torch.Tensor{]}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+
+\end{fulllineitems}
+
+
+
+\section{Training Utils}
+\label{\detokenize{api:training-utils}}\index{module@\spxentry{module}!hypyml.train\_utils@\spxentry{hypyml.train\_utils}}\index{hypyml.train\_utils@\spxentry{hypyml.train\_utils}!module@\spxentry{module}}\index{train() (in module hypyml.train\_utils)@\spxentry{train()}\spxextra{in module hypyml.train\_utils}}\phantomsection\label{\detokenize{api:module-hypyml.train_utils}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{api:hypyml.train_utils.train}}
 \pysigstartsignatures
 \pysiglinewithargsret{\sphinxcode{\sphinxupquote{hypyml.train\_utils.}}\sphinxbfcode{\sphinxupquote{train}}}{\sphinxparam{\DUrole{n}{model}}\sphinxparamcomma \sphinxparam{\DUrole{n}{train\_loader}}\sphinxparamcomma \sphinxparam{\DUrole{n}{test\_loader}}\sphinxparamcomma \sphinxparam{\DUrole{n}{optimizer}}\sphinxparamcomma \sphinxparam{\DUrole{n}{loss\_fn}}\sphinxparamcomma \sphinxparam{\DUrole{n}{scheduler}}\sphinxparamcomma \sphinxparam{\DUrole{n}{filename}}\sphinxparamcomma \sphinxparam{\DUrole{n}{epochs}}\sphinxparamcomma \sphinxparam{\DUrole{n}{print\_training\_loss}\DUrole{o}{=}\DUrole{default_value}{True}}\sphinxparamcomma \sphinxparam{\DUrole{n}{save\_frequency}\DUrole{o}{=}\DUrole{default_value}{50}}}{}
 \pysigstopsignatures
@@ -628,10 +644,10 @@ Trained Hybrid Model.
 \begin{sphinxtheindex}
 \let\bigletter\sphinxstyleindexlettergroup
 \bigletter{h}
-\item\relax\sphinxstyleindexentry{hypyml.configs}\sphinxstyleindexpageref{index:\detokenize{module-hypyml.configs}}
-\item\relax\sphinxstyleindexentry{hypyml.ensemble}\sphinxstyleindexpageref{index:\detokenize{module-hypyml.ensemble}}
-\item\relax\sphinxstyleindexentry{hypyml.models}\sphinxstyleindexpageref{index:\detokenize{module-hypyml.models}}
-\item\relax\sphinxstyleindexentry{hypyml.train\_utils}\sphinxstyleindexpageref{index:\detokenize{module-hypyml.train_utils}}
+\item\relax\sphinxstyleindexentry{hypyml.configs}\sphinxstyleindexpageref{api:\detokenize{module-hypyml.configs}}
+\item\relax\sphinxstyleindexentry{hypyml.ensemble}\sphinxstyleindexpageref{api:\detokenize{module-hypyml.ensemble}}
+\item\relax\sphinxstyleindexentry{hypyml.models}\sphinxstyleindexpageref{api:\detokenize{module-hypyml.models}}
+\item\relax\sphinxstyleindexentry{hypyml.train\_utils}\sphinxstyleindexpageref{api:\detokenize{module-hypyml.train_utils}}
 \end{sphinxtheindex}
 
 \renewcommand{\indexname}{Index}

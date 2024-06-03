@@ -4,22 +4,72 @@
 \let\spxentry \sphinxstyleindexentry
 \let\spxextra \sphinxstyleindexextra
 
+  \bigletter A
+  \item \spxentry{activation\_functions}\spxextra{hypyml.configs.MLPConfig attribute}, 
+		\hyperpage{4}
+
+  \indexspace
+  \bigletter B
+  \item \spxentry{backward()}\spxextra{hypyml.models.Physics static method}, \hyperpage{2}
+
+  \indexspace
+  \bigletter C
+  \item \spxentry{config}\spxextra{hypyml.models.MLP attribute}, \hyperpage{1}
+
+  \indexspace
+  \bigletter F
+  \item \spxentry{forward()}\spxextra{hypyml.ensemble.HybridModel method}, \hyperpage{1}
+  \item \spxentry{forward()}\spxextra{hypyml.models.MLP method}, \hyperpage{1}
+  \item \spxentry{forward()}\spxextra{hypyml.models.Physics static method}, \hyperpage{2}
+  \item \spxentry{forward\_func}\spxextra{hypyml.configs.PhysicsConfig attribute}, \hyperpage{4}
+
+  \indexspace
   \bigletter H
+  \item \spxentry{HybridConfig}\spxextra{class in hypyml.configs}, \hyperpage{3}
+  \item \spxentry{HybridModel}\spxextra{class in hypyml.ensemble}, \hyperpage{1}
   \item \spxentry{hypyml.configs}
-    \subitem \spxentry{module}, \hyperpage{1}
+    \subitem \spxentry{module}, \hyperpage{3}
   \item \spxentry{hypyml.ensemble}
     \subitem \spxentry{module}, \hyperpage{1}
   \item \spxentry{hypyml.models}
     \subitem \spxentry{module}, \hyperpage{1}
   \item \spxentry{hypyml.train\_utils}
-    \subitem \spxentry{module}, \hyperpage{1}
+    \subitem \spxentry{module}, \hyperpage{4}
+
+  \indexspace
+  \bigletter J
+  \item \spxentry{jacobian\_func}\spxextra{hypyml.configs.PhysicsConfig attribute}, \hyperpage{4}
+
+  \indexspace
+  \bigletter L
+  \item \spxentry{layers}\spxextra{hypyml.configs.MLPConfig attribute}, \hyperpage{3}
 
   \indexspace
   \bigletter M
+  \item \spxentry{MLP}\spxextra{class in hypyml.models}, \hyperpage{1}
+  \item \spxentry{MLPConfig}\spxextra{class in hypyml.configs}, \hyperpage{3}
+  \item \spxentry{model\_inputs}\spxextra{hypyml.configs.HybridConfig attribute}, \hyperpage{3}
+  \item \spxentry{models}\spxextra{hypyml.configs.HybridConfig attribute}, \hyperpage{3}
   \item \spxentry{module}
-    \subitem \spxentry{hypyml.configs}, \hyperpage{1}
+    \subitem \spxentry{hypyml.configs}, \hyperpage{3}
     \subitem \spxentry{hypyml.ensemble}, \hyperpage{1}
     \subitem \spxentry{hypyml.models}, \hyperpage{1}
-    \subitem \spxentry{hypyml.train\_utils}, \hyperpage{1}
+    \subitem \spxentry{hypyml.train\_utils}, \hyperpage{4}
+
+  \indexspace
+  \bigletter N
+  \item \spxentry{num\_hidden\_dim}\spxextra{hypyml.configs.MLPConfig attribute}, \hyperpage{3}
+  \item \spxentry{num\_hidden\_layers}\spxextra{hypyml.configs.MLPConfig attribute}, \hyperpage{4}
+  \item \spxentry{num\_input\_dim}\spxextra{hypyml.configs.MLPConfig attribute}, \hyperpage{3}
+  \item \spxentry{num\_output\_dim}\spxextra{hypyml.configs.MLPConfig attribute}, \hyperpage{3}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{Physics}\spxextra{class in hypyml.models}, \hyperpage{2}
+  \item \spxentry{PhysicsConfig}\spxextra{class in hypyml.configs}, \hyperpage{4}
+
+  \indexspace
+  \bigletter T
+  \item \spxentry{train()}\spxextra{in module hypyml.train\_utils}, \hyperpage{4}
 
 \end{sphinxtheindex}

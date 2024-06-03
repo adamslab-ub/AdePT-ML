@@ -1,7 +1,7 @@
 This is makeindex, version 2.15 [TeX Live 2022/dev] (kpathsea + Thai support).
 Scanning style file ./python.ist.......done (7 attributes redefined, 0 ignored).
-Scanning input file hypyml.idx....done (8 entries accepted, 0 rejected).
-Sorting entries....done (26 comparisons).
-Generating output file hypyml.ind....done (25 lines written, 0 warnings).
+Scanning input file hypyml.idx....done (30 entries accepted, 0 rejected).
+Sorting entries....done (159 comparisons).
+Generating output file hypyml.ind....done (75 lines written, 0 warnings).
 Output written in hypyml.ind.
 Transcript written in hypyml.ilg.

@@ -1,8 +1,30 @@
-\indexentry{module@\spxentry{module}!hypyml.configs@\spxentry{hypyml.configs}|hyperpage}{1}
-\indexentry{hypyml.configs@\spxentry{hypyml.configs}!module@\spxentry{module}|hyperpage}{1}
-\indexentry{module@\spxentry{module}!hypyml.models@\spxentry{hypyml.models}|hyperpage}{1}
-\indexentry{hypyml.models@\spxentry{hypyml.models}!module@\spxentry{module}|hyperpage}{1}
 \indexentry{module@\spxentry{module}!hypyml.ensemble@\spxentry{hypyml.ensemble}|hyperpage}{1}
 \indexentry{hypyml.ensemble@\spxentry{hypyml.ensemble}!module@\spxentry{module}|hyperpage}{1}
-\indexentry{module@\spxentry{module}!hypyml.train\_utils@\spxentry{hypyml.train\_utils}|hyperpage}{1}
-\indexentry{hypyml.train\_utils@\spxentry{hypyml.train\_utils}!module@\spxentry{module}|hyperpage}{1}
+\indexentry{HybridModel (class in hypyml.ensemble)@\spxentry{HybridModel}\spxextra{class in hypyml.ensemble}|hyperpage}{1}
+\indexentry{forward() (hypyml.ensemble.HybridModel method)@\spxentry{forward()}\spxextra{hypyml.ensemble.HybridModel method}|hyperpage}{1}
+\indexentry{module@\spxentry{module}!hypyml.models@\spxentry{hypyml.models}|hyperpage}{1}
+\indexentry{hypyml.models@\spxentry{hypyml.models}!module@\spxentry{module}|hyperpage}{1}
+\indexentry{MLP (class in hypyml.models)@\spxentry{MLP}\spxextra{class in hypyml.models}|hyperpage}{1}
+\indexentry{config (hypyml.models.MLP attribute)@\spxentry{config}\spxextra{hypyml.models.MLP attribute}|hyperpage}{1}
+\indexentry{forward() (hypyml.models.MLP method)@\spxentry{forward()}\spxextra{hypyml.models.MLP method}|hyperpage}{1}
+\indexentry{Physics (class in hypyml.models)@\spxentry{Physics}\spxextra{class in hypyml.models}|hyperpage}{2}
+\indexentry{backward() (hypyml.models.Physics static method)@\spxentry{backward()}\spxextra{hypyml.models.Physics static method}|hyperpage}{2}
+\indexentry{forward() (hypyml.models.Physics static method)@\spxentry{forward()}\spxextra{hypyml.models.Physics static method}|hyperpage}{2}
+\indexentry{module@\spxentry{module}!hypyml.configs@\spxentry{hypyml.configs}|hyperpage}{3}
+\indexentry{hypyml.configs@\spxentry{hypyml.configs}!module@\spxentry{module}|hyperpage}{3}
+\indexentry{HybridConfig (class in hypyml.configs)@\spxentry{HybridConfig}\spxextra{class in hypyml.configs}|hyperpage}{3}
+\indexentry{models (hypyml.configs.HybridConfig attribute)@\spxentry{models}\spxextra{hypyml.configs.HybridConfig attribute}|hyperpage}{3}
+\indexentry{model\_inputs (hypyml.configs.HybridConfig attribute)@\spxentry{model\_inputs}\spxextra{hypyml.configs.HybridConfig attribute}|hyperpage}{3}
+\indexentry{MLPConfig (class in hypyml.configs)@\spxentry{MLPConfig}\spxextra{class in hypyml.configs}|hyperpage}{3}
+\indexentry{layers (hypyml.configs.MLPConfig attribute)@\spxentry{layers}\spxextra{hypyml.configs.MLPConfig attribute}|hyperpage}{3}
+\indexentry{num\_input\_dim (hypyml.configs.MLPConfig attribute)@\spxentry{num\_input\_dim}\spxextra{hypyml.configs.MLPConfig attribute}|hyperpage}{3}
+\indexentry{num\_hidden\_dim (hypyml.configs.MLPConfig attribute)@\spxentry{num\_hidden\_dim}\spxextra{hypyml.configs.MLPConfig attribute}|hyperpage}{3}
+\indexentry{num\_output\_dim (hypyml.configs.MLPConfig attribute)@\spxentry{num\_output\_dim}\spxextra{hypyml.configs.MLPConfig attribute}|hyperpage}{3}
+\indexentry{num\_hidden\_layers (hypyml.configs.MLPConfig attribute)@\spxentry{num\_hidden\_layers}\spxextra{hypyml.configs.MLPConfig attribute}|hyperpage}{4}
+\indexentry{activation\_functions (hypyml.configs.MLPConfig attribute)@\spxentry{activation\_functions}\spxextra{hypyml.configs.MLPConfig attribute}|hyperpage}{4}
+\indexentry{PhysicsConfig (class in hypyml.configs)@\spxentry{PhysicsConfig}\spxextra{class in hypyml.configs}|hyperpage}{4}
+\indexentry{forward\_func (hypyml.configs.PhysicsConfig attribute)@\spxentry{forward\_func}\spxextra{hypyml.configs.PhysicsConfig attribute}|hyperpage}{4}
+\indexentry{jacobian\_func (hypyml.configs.PhysicsConfig attribute)@\spxentry{jacobian\_func}\spxextra{hypyml.configs.PhysicsConfig attribute}|hyperpage}{4}
+\indexentry{module@\spxentry{module}!hypyml.train\_utils@\spxentry{hypyml.train\_utils}|hyperpage}{4}
+\indexentry{hypyml.train\_utils@\spxentry{hypyml.train\_utils}!module@\spxentry{module}|hyperpage}{4}
+\indexentry{train() (in module hypyml.train\_utils)@\spxentry{train()}\spxextra{in module hypyml.train\_utils}|hyperpage}{4}

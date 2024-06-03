@@ -1,10 +1,10 @@
 import torch
 import unittest
 import numpy as np
-from hypyml import models, configs, HybridModel, train
+from adeptml import models, configs, HybridModel, train
 
 
-class TestHyPyML(unittest.TestCase):
+class TestADEPTML(unittest.TestCase):
     def test_MLP(self):
         self.mlp_config = configs.MLPConfig(
             num_input_dim=2,

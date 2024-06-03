@@ -4,23 +4,23 @@ API Reference
 =======
 Ensemble Model
 =======
-.. automodule:: hypyml.ensemble
+.. automodule:: adeptml.ensemble
   :members:
 
 =======
 Models
 =======
-.. automodule:: hypyml.models
+.. automodule:: adeptml.models
   :members:
 
 =======
 Configs
 =======
-.. automodule:: hypyml.configs
+.. automodule:: adeptml.configs
   :members:
 
 =======
 Training Utils
 =======
-.. automodule:: hypyml.train_utils
+.. automodule:: adeptml.train_utils
   :members:

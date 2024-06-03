@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath(".."))
 
 # -- Project information -----------------------------------------------------
 
-project = "HyPyML"
+project = "AdePT-ML"
 copyright = "2024, Manaswin Oddiraju"
 author = "Manaswin Oddiraju"
 
