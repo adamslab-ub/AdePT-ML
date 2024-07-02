@@ -22,7 +22,7 @@ pip install adeptml
 The primary building block of this package is the [Hybrid Model]() class. It neatly packages all the member models into one main Torch model and enables running forward inference as well as backpropagation.
 The class accepts as input an instance of the [Hybrid Config]() class. This config is useful in defining all the constituent modules and their inputs.
 
-As component modules, the [Models]() module provides a straight forward [MLP implmentation]() as well as a [Physics Module]().
+As component modules, the [Models]() module provides a straight forward [MLP]() implementation as well as a [Physics Module]().
 This module is a torch Autograd wrapper which enables the integration of non-Torch numpy functions into a fully torch model and allows for training with torch optimizers.
 
 ## API Documentation:
