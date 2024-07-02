@@ -1,8 +1,6 @@
 API Reference
 =============
 
-.. _Hybrid Model:
-
 ============
 Hybrid Model
 ============
@@ -14,8 +12,6 @@ Models
 =======
 .. automodule:: adeptml.models
   :members:
-
-.. _Hybrid Config:
 
 =======
 Configs

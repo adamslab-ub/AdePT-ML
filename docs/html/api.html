@@ -33,9 +33,9 @@
             
   <section id="api-reference">
 <h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h1>
-<section id="hybrid-model">
-<span id="id1"></span><h2>Hybrid Model<a class="headerlink" href="#hybrid-model" title="Link to this heading">¶</a></h2>
-<dl class="py class" id="module-adeptml.ensemble">
+<section id="module-adeptml.ensemble">
+<span id="hybrid-model"></span><h2>Hybrid Model<a class="headerlink" href="#module-adeptml.ensemble" title="Link to this heading">¶</a></h2>
+<dl class="py class">
 <dt class="sig sig-object py" id="adeptml.ensemble.HybridModel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.ensemble.</span></span><span class="sig-name descname"><span class="pre">HybridModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#adeptml.configs.HybridConfig" title="adeptml.configs.HybridConfig"><span class="pre">HybridConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/ensemble.html#HybridModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.ensemble.HybridModel" title="Link to this definition">¶</a></dt>
 <dd><p>Torch Module for Serial Hybrid Physics Models.</p>
@@ -138,7 +138,7 @@ config: Instance of PhysicsConfig.</p>
 
 </section>
 <section id="module-adeptml.configs">
-<span id="configs"></span><span id="hybrid-config"></span><h2>Configs<a class="headerlink" href="#module-adeptml.configs" title="Link to this heading">¶</a></h2>
+<span id="configs"></span><h2>Configs<a class="headerlink" href="#module-adeptml.configs" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="adeptml.configs.HybridConfig">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.configs.</span></span><span class="sig-name descname"><span class="pre">HybridConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#adeptml.configs.MLPConfig" title="adeptml.configs.MLPConfig"><span class="pre">MLPConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#adeptml.configs.PhysicsConfig" title="adeptml.configs.PhysicsConfig"><span class="pre">PhysicsConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Module</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/configs.html#HybridConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.configs.HybridConfig" title="Link to this definition">¶</a></dt>
@@ -323,7 +323,7 @@ Use “Input” if the input to this model matches the hybrid model’s original
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#hybrid-model">Hybrid Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-adeptml.ensemble">Hybrid Model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-adeptml.models">Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-adeptml.configs">Configs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-adeptml.train_utils">Training Utils</a></li>
