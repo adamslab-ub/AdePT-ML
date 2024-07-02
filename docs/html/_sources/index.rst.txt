@@ -4,17 +4,22 @@
    contain the root `toctree` directive.
 
 Welcome to AdePT-ML's documentation!
-==================================
+=====================================
+This library is designed to streamline the training of neural network surrogates and to facilitate the integration of Torch modules with non-Torch modules to train Hybrid Physics Infused Neural Networks.
 
-
+.. API Tree:
+.. *********
 .. toctree::
+  :maxdepth: 2
+  :caption: Contents:
+  
   api
 
 
 
-Indices and tables
-==================
+.. Indices and tables
+.. ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`

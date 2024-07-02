@@ -33,11 +33,11 @@
             
   <section id="api-reference">
 <h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h1>
-<section id="ensemble-model">
-<h2>Ensemble Model<a class="headerlink" href="#ensemble-model" title="Link to this heading">¶</a></h2>
+<section id="hybrid-model">
+<span id="id1"></span><h2>Hybrid Model<a class="headerlink" href="#hybrid-model" title="Link to this heading">¶</a></h2>
 <dl class="py class" id="module-adeptml.ensemble">
 <dt class="sig sig-object py" id="adeptml.ensemble.HybridModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.ensemble.</span></span><span class="sig-name descname"><span class="pre">HybridModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#adeptml.configs.HybridConfig" title="adeptml.configs.HybridConfig"><span class="pre">HybridConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.ensemble.HybridModel" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.ensemble.</span></span><span class="sig-name descname"><span class="pre">HybridModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#adeptml.configs.HybridConfig" title="adeptml.configs.HybridConfig"><span class="pre">HybridConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/ensemble.html#HybridModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.ensemble.HybridModel" title="Link to this definition">¶</a></dt>
 <dd><p>Torch Module for Serial Hybrid Physics Models.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -54,7 +54,7 @@
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="adeptml.ensemble.HybridModel.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phy_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.ensemble.HybridModel.forward" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phy_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/ensemble.html#HybridModel.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.ensemble.HybridModel.forward" title="Link to this definition">¶</a></dt>
 <dd><p>Function to run inference on the hybrid model.</p>
 </dd></dl>
 
@@ -65,7 +65,7 @@
 <span id="models"></span><h2>Models<a class="headerlink" href="#module-adeptml.models" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="adeptml.models.MLP">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.models.</span></span><span class="sig-name descname"><span class="pre">MLP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#adeptml.configs.MLPConfig" title="adeptml.configs.MLPConfig"><span class="pre">MLPConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.models.MLP" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.models.</span></span><span class="sig-name descname"><span class="pre">MLP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#adeptml.configs.MLPConfig" title="adeptml.configs.MLPConfig"><span class="pre">MLPConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/models.html#MLP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.models.MLP" title="Link to this definition">¶</a></dt>
 <dd><p>Multilayer Perceptron (MLP) neural network model.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="adeptml.models.MLP.config">
@@ -85,7 +85,7 @@ input and output dimensions, and the number of hidden layers.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="adeptml.models.MLP.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.models.MLP.forward" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/models.html#MLP.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.models.MLP.forward" title="Link to this definition">¶</a></dt>
 <dd><p>Forward pass of the MLP model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -104,84 +104,44 @@ input and output dimensions, and the number of hidden layers.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="adeptml.models.Physics">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.models.</span></span><span class="sig-name descname"><span class="pre">Physics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.models.Physics" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.models.</span></span><span class="sig-name descname"><span class="pre">Physics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/models.html#Physics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.models.Physics" title="Link to this definition">¶</a></dt>
 <dd><p>Custom Autograd function to enable backpropagation on Custom Physics Models.</p>
 <p>Attributes:
 config: Instance of PhysicsConfig.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="adeptml.models.Physics.backward">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.models.Physics.backward" title="Link to this definition">¶</a></dt>
-<dd><p>Define a formula for differentiating the operation with backward mode automatic differentiation.</p>
-<p>This function is to be overridden by all subclasses.
-(Defining this function is equivalent to defining the <code class="docutils literal notranslate"><span class="pre">vjp</span></code> function.)</p>
-<p>It must accept a context <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx</span></code> as the first argument, followed by
-as many outputs as the <a class="reference internal" href="#adeptml.models.Physics.forward" title="adeptml.models.Physics.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> returned (None will be passed in
-for non tensor outputs of the forward function),
-and it should return as many tensors, as there were inputs to
-<a class="reference internal" href="#adeptml.models.Physics.forward" title="adeptml.models.Physics.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a>. Each argument is the gradient w.r.t the given output,
-and each returned value should be the gradient w.r.t. the
-corresponding input. If an input is not a Tensor or is a Tensor not
-requiring grads, you can just pass None as a gradient for that input.</p>
-<p>The context can be used to retrieve tensors saved during the forward
-pass. It also has an attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx.needs_input_grad</span></code> as a tuple
-of booleans representing whether each input needs gradient. E.g.,
-<a class="reference internal" href="#adeptml.models.Physics.backward" title="adeptml.models.Physics.backward"><code class="xref py py-func docutils literal notranslate"><span class="pre">backward()</span></code></a> will have <code class="docutils literal notranslate"><span class="pre">ctx.needs_input_grad[0]</span> <span class="pre">=</span> <span class="pre">True</span></code> if the
-first input to <a class="reference internal" href="#adeptml.models.Physics.forward" title="adeptml.models.Physics.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> needs gradient computed w.r.t. the
-output.</p>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/models.html#Physics.backward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.models.Physics.backward" title="Link to this definition">¶</a></dt>
+<dd><p>Function to compute gradient across the forward_fun during backpropagation.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="adeptml.models.Physics.forward">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian_fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.models.Physics.forward" title="Link to this definition">¶</a></dt>
-<dd><p>Define the forward of the custom autograd Function.</p>
-<p>This function is to be overridden by all subclasses.
-There are two ways to define forward:</p>
-<p>Usage 1 (Combined forward and ctx):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-    <span class="k">pass</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>It must accept a context ctx as the first argument, followed by any
-number of arguments (tensors or other types).</p></li>
-<li><p>See <span class="xref std std-ref">combining-forward-context</span> for more details</p></li>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_fun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian_fun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/models.html#Physics.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.models.Physics.forward" title="Link to this definition">¶</a></dt>
+<dd><p>Function defining forward pass for the physics model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – Torch Autograd context object (<a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#context-method-mixins">https://pytorch.org/docs/stable/autograd.html#context-method-mixins</a>)</p></li>
+<li><p><strong>x</strong> – Input tensor</p></li>
+<li><p><strong>forward_fun</strong> – Function which computes outputs of the physics function. Accepts numpy arrays as input.</p></li>
+<li><p><strong>jacobian_fun</strong> – Function which computes Jacobian / gradient of the physics function. Accepts numpy arrays as input.</p></li>
+<li><p><strong>args</strong> – List containing additional positional arguments (as tensors) to forward_fun. Gradients are not computed w.r.t these args.</p></li>
 </ul>
-<p>Usage 2 (Separate forward and ctx):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-    <span class="k">pass</span>
-
-<span class="nd">@staticmethod</span>
-<span class="k">def</span> <span class="nf">setup_context</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">output</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">pass</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>The forward no longer accepts a ctx argument.</p></li>
-<li><p>Instead, you must also override the <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.setup_context()</span></code>
-staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
-<code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
-to the forward.</p></li>
-<li><p>See <span class="xref std std-ref">extending-autograd</span> for more details</p></li>
-</ul>
-<p>The context can be used to store arbitrary data that can be then
-retrieved during the backward pass. Tensors should not be stored
-directly on <cite>ctx</cite> (though this is not currently enforced for
-backward compatibility). Instead, tensors should be saved either with
-<code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_backward()</span></code> if they are intended to be used in
-<code class="docutils literal notranslate"><span class="pre">backward</span></code> (equivalently, <code class="docutils literal notranslate"><span class="pre">vjp</span></code>) or <code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_forward()</span></code>
-if they are intended to be used for in <code class="docutils literal notranslate"><span class="pre">jvp</span></code>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The output of forward_fun as a tensor.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 </section>
 <section id="module-adeptml.configs">
-<span id="configs"></span><h2>Configs<a class="headerlink" href="#module-adeptml.configs" title="Link to this heading">¶</a></h2>
+<span id="configs"></span><span id="hybrid-config"></span><h2>Configs<a class="headerlink" href="#module-adeptml.configs" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="adeptml.configs.HybridConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.configs.</span></span><span class="sig-name descname"><span class="pre">HybridConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#adeptml.configs.MLPConfig" title="adeptml.configs.MLPConfig"><span class="pre">MLPConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#adeptml.configs.PhysicsConfig" title="adeptml.configs.PhysicsConfig"><span class="pre">PhysicsConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Module</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.configs.HybridConfig" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.configs.</span></span><span class="sig-name descname"><span class="pre">HybridConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#adeptml.configs.MLPConfig" title="adeptml.configs.MLPConfig"><span class="pre">MLPConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#adeptml.configs.PhysicsConfig" title="adeptml.configs.PhysicsConfig"><span class="pre">PhysicsConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Module</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/configs.html#HybridConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.configs.HybridConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Config for Ensemble Models.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="adeptml.configs.HybridConfig.models">
@@ -215,7 +175,7 @@ Use “Input” if the input to this model matches the hybrid model’s original
 
 <dl class="py class">
 <dt class="sig sig-object py" id="adeptml.configs.MLPConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.configs.</span></span><span class="sig-name descname"><span class="pre">MLPConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_input_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hidden_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_output_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hidden_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_functions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.configs.MLPConfig" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.configs.</span></span><span class="sig-name descname"><span class="pre">MLPConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_input_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hidden_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_output_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hidden_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_functions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/configs.html#MLPConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.configs.MLPConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Configuration class for the Multilayer Perceptron (MLP) model.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="adeptml.configs.MLPConfig.layers">
@@ -287,7 +247,7 @@ Use “Input” if the input to this model matches the hybrid model’s original
 
 <dl class="py class">
 <dt class="sig sig-object py" id="adeptml.configs.PhysicsConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.configs.</span></span><span class="sig-name descname"><span class="pre">PhysicsConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forward_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.configs.PhysicsConfig" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.configs.</span></span><span class="sig-name descname"><span class="pre">PhysicsConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forward_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/configs.html#PhysicsConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.configs.PhysicsConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Configuration class for physics-related functions.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="adeptml.configs.PhysicsConfig.forward_func">
@@ -314,11 +274,11 @@ Use “Input” if the input to this model matches the hybrid model’s original
 </dd></dl>
 
 </section>
-<section id="training-utils">
-<h2>Training Utils<a class="headerlink" href="#training-utils" title="Link to this heading">¶</a></h2>
-<dl class="py function" id="module-adeptml.train_utils">
+<section id="module-adeptml.train_utils">
+<span id="training-utils"></span><h2>Training Utils<a class="headerlink" href="#module-adeptml.train_utils" title="Link to this heading">¶</a></h2>
+<dl class="py function">
 <dt class="sig sig-object py" id="adeptml.train_utils.train">
-<span class="sig-prename descclassname"><span class="pre">adeptml.train_utils.</span></span><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scheduler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_training_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#adeptml.train_utils.train" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">adeptml.train_utils.</span></span><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scheduler</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_training_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/train_utils.html#train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.train_utils.train" title="Link to this definition">¶</a></dt>
 <dd><p>Training Function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -360,54 +320,13 @@ Use “Input” if the input to this model matches the hybrid model’s original
 
 
 <h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ensemble-model">Ensemble Model</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#adeptml.ensemble.HybridModel"><code class="docutils literal notranslate"><span class="pre">HybridModel</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.ensemble.HybridModel.forward"><code class="docutils literal notranslate"><span class="pre">HybridModel.forward()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-adeptml.models">Models</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#adeptml.models.MLP"><code class="docutils literal notranslate"><span class="pre">MLP</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.models.MLP.config"><code class="docutils literal notranslate"><span class="pre">MLP.config</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.models.MLP.forward"><code class="docutils literal notranslate"><span class="pre">MLP.forward()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#adeptml.models.Physics"><code class="docutils literal notranslate"><span class="pre">Physics</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.models.Physics.backward"><code class="docutils literal notranslate"><span class="pre">Physics.backward()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.models.Physics.forward"><code class="docutils literal notranslate"><span class="pre">Physics.forward()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#module-adeptml.configs">Configs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#adeptml.configs.HybridConfig"><code class="docutils literal notranslate"><span class="pre">HybridConfig</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.HybridConfig.models"><code class="docutils literal notranslate"><span class="pre">HybridConfig.models</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.HybridConfig.model_inputs"><code class="docutils literal notranslate"><span class="pre">HybridConfig.model_inputs</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#adeptml.configs.MLPConfig"><code class="docutils literal notranslate"><span class="pre">MLPConfig</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.layers"><code class="docutils literal notranslate"><span class="pre">MLPConfig.layers</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.num_input_dim"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_input_dim</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.num_hidden_dim"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_hidden_dim</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.num_output_dim"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_output_dim</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.num_hidden_layers"><code class="docutils literal notranslate"><span class="pre">MLPConfig.num_hidden_layers</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.MLPConfig.activation_functions"><code class="docutils literal notranslate"><span class="pre">MLPConfig.activation_functions</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#adeptml.configs.PhysicsConfig"><code class="docutils literal notranslate"><span class="pre">PhysicsConfig</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.PhysicsConfig.forward_func"><code class="docutils literal notranslate"><span class="pre">PhysicsConfig.forward_func</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#adeptml.configs.PhysicsConfig.jacobian_func"><code class="docutils literal notranslate"><span class="pre">PhysicsConfig.jacobian_func</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#training-utils">Training Utils</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#adeptml.train_utils.train"><code class="docutils literal notranslate"><span class="pre">train()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#hybrid-model">Hybrid Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-adeptml.models">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-adeptml.configs">Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-adeptml.train_utils">Training Utils</a></li>
 </ul>
 </li>
 </ul>

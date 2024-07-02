@@ -1,5 +1,6 @@
 import torch
 import torch.nn
+from typing import Callable, Optional, List
 from adeptml import configs
 
 ACTIVATIONS = {
@@ -60,7 +61,24 @@ class Physics(torch.autograd.Function):
     """
 
     @staticmethod
-    def forward(ctx, x, forward_fun, jacobian_fun, args=None):
+    def forward(
+        ctx,
+        x: torch.Tensor,
+        forward_fun: Callable,
+        jacobian_fun: Callable,
+        args: Optional[List[torch.Tensor]] = None,
+    ):
+        """
+        Function defining forward pass for the physics model.
+
+        :param ctx: Torch Autograd context object (https://pytorch.org/docs/stable/autograd.html#context-method-mixins)
+        :param x: Input tensor
+        :param forward_fun: Function which computes outputs of the physics function. Accepts numpy arrays as input.
+        :param jacobian_fun: Function which computes Jacobian / gradient of the physics function. Accepts numpy arrays as input.
+        :param args: List containing additional positional arguments (as tensors) to forward_fun. Gradients are not computed w.r.t these args.
+
+        :return: The output of forward_fun as a tensor.
+        """
         if args:
             ctx.save_for_backward(x, *args)
         else:
@@ -79,6 +97,9 @@ class Physics(torch.autograd.Function):
 
     @staticmethod
     def backward(ctx, grad_output):
+        """
+        Function to compute gradient across the forward_fun during backpropagation.
+        """
         input = ctx.saved_tensors[0]
         args = ctx.saved_tensors[1:]
         jacobian_fun = ctx.jacobian_fun
