@@ -19,6 +19,9 @@ pip install adeptml
 2. Joblib (https://joblib.readthedocs.io/en/latest/) (For loading and saving model parameters)
 3. Tensorboard
 
+## Documentation:
+Visit our [Read the docs page](https://adept-ml.readthedocs.io/en/latest/)
+
 ## Examples:
 Refer to the tests file. Additional examples will be added soon.
 
