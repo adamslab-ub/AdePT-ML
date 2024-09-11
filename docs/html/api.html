@@ -178,17 +178,6 @@ Use “Input” if the input to this model matches the hybrid model’s original
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">adeptml.configs.</span></span><span class="sig-name descname"><span class="pre">MLPConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_input_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hidden_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_output_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_hidden_layers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_functions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/adeptml/configs.html#MLPConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#adeptml.configs.MLPConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Configuration class for the Multilayer Perceptron (MLP) model.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="adeptml.configs.MLPConfig.layers">
-<span class="sig-name descname"><span class="pre">layers</span></span><a class="headerlink" href="#adeptml.configs.MLPConfig.layers" title="Link to this definition">¶</a></dt>
-<dd><p>Total number of layers in the MLP (including hidden and output layers).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="adeptml.configs.MLPConfig.num_input_dim">
 <span class="sig-name descname"><span class="pre">num_input_dim</span></span><a class="headerlink" href="#adeptml.configs.MLPConfig.num_input_dim" title="Link to this definition">¶</a></dt>
 <dd><p>Number of input dimensions to the MLP.</p>
@@ -235,7 +224,8 @@ Use “Input” if the input to this model matches the hybrid model’s original
 <dl class="py attribute">
 <dt class="sig sig-object py" id="adeptml.configs.MLPConfig.activation_functions">
 <span class="sig-name descname"><span class="pre">activation_functions</span></span><a class="headerlink" href="#adeptml.configs.MLPConfig.activation_functions" title="Link to this definition">¶</a></dt>
-<dd><p>String representation of the activation functions used in the MLP.</p>
+<dd><p>String representation of the activation functions used in the MLP.
+Choices are “leakyrelu”, “sigmoid” and “tanh”</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>str</p>
