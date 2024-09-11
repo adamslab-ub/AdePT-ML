@@ -6,7 +6,7 @@ from adeptml import configs
 ACTIVATIONS = {
     "leakyrelu": torch.nn.LeakyReLU(),
     "sigmoid": torch.nn.Sigmoid(),
-    "Tanh": torch.nn.Tanh(),
+    "tanh": torch.nn.Tanh(),
 }
 
 
@@ -106,24 +106,13 @@ class Physics(torch.autograd.Function):
         jac_final = None
         if ctx.needs_input_grad[0]:
             input = input.detach().cpu().numpy()
-            if args != None:
+            if args is not None:
                 args = [tmp_args.detach().cpu().numpy() for tmp_args in args]
                 jac_final = jacobian_fun(input, *args)
-                jac_final = torch.Tensor(jac_final).to(configs.DEVICE)
-                jac_final = jac_final.reshape(input.shape[0], -1, input.shape[1])
-                grad_output = grad_output.reshape(input.shape[0], -1, 1)
-                grad_final = torch.matmul(grad_output, jac_final)
-                return grad_final, None, None, None
             else:
                 jac_final = jacobian_fun(input)
-                jac_final = torch.Tensor(jac_final).to(configs.DEVICE)
-                grad_final = torch.zeros(input.shape[0], input.shape[1]).to(
-                    configs.DEVICE
-                )
-                grad_output = grad_output.reshape(input.shape[0], -1)
-                for i in range(grad_final.shape[0]):
-                    grad_final[i, :] = torch.matmul(
-                        grad_output[i, :].reshape(1, -1),
-                        jac_final[i].reshape(-1, input.shape[1]),
-                    )
-                return grad_final, None, None
+            jac_final = torch.Tensor(jac_final).to(configs.DEVICE)
+            jac_final = jac_final.reshape(input.shape[0], -1, input.shape[1])
+            grad_output = grad_output.unsqueeze(1)
+            grad_final = torch.matmul(grad_output, jac_final).squeeze()
+            return grad_final, None, None, None

@@ -96,7 +96,7 @@ class TestADEPTML(unittest.TestCase):
         )
         phy_2 = configs.PhysicsConfig(
             forward_func=lambda x, y: 4 * x,
-            jacobian_func=lambda x, y: 4 * np.ones((2, x.shape[1])),
+            jacobian_func=lambda x, y: 4 * np.ones((x.shape[0], 2, x.shape[1])),
         )
         config = configs.HybridConfig(
             models={"MLP": mlp_config, "Physics": phy_2},

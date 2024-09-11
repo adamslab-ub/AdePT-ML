@@ -4,7 +4,7 @@ import torch
 
 
 if torch.cuda.is_available():
-    DEVICE = "cuda"
+    DEVICE = "cuda:0"
 else:
     DEVICE = "cpu"
 
@@ -16,9 +16,6 @@ class MLPConfig:
 
     Attributes
     ----------
-    layers : int
-        Total number of layers in the MLP (including hidden and output layers).
-
     num_input_dim : int
         Number of input dimensions to the MLP.
 
@@ -33,6 +30,7 @@ class MLPConfig:
 
     activation_functions : str
         String representation of the activation functions used in the MLP.
+        Choices are "leakyrelu", "sigmoid" and "tanh"
     """
 
     num_input_dim: int
