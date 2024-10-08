@@ -4,6 +4,12 @@ import numpy as np
 from adeptml import models, configs, HybridModel, train
 
 
+def jac_fun(x):
+    jacs = np.array([np.diag(x[i, :].ravel()) for i in range(x.shape[0])])
+    print(jacs.shape)
+    return 2 * jacs
+
+
 class TestADEPTML(unittest.TestCase):
     def test_MLP(self):
         self.mlp_config = configs.MLPConfig(
@@ -21,7 +27,7 @@ class TestADEPTML(unittest.TestCase):
     def test_Physics(self):
         self.phy_config = configs.PhysicsConfig(
             forward_func=lambda x: np.sum(x**2, axis=1),
-            jacobian_func=lambda x: np.diag(2 * x),
+            jacobian_func=jac_fun,
         )
         model = models.Physics.apply
         x = torch.rand((4, 2)).to(configs.DEVICE)
@@ -32,11 +38,10 @@ class TestADEPTML(unittest.TestCase):
 
     def test_ensemble_serial(self):
         phy_1 = configs.PhysicsConfig(
-            forward_func=lambda x: np.sum(x**2, axis=1).reshape(-1, 1),
-            jacobian_func=lambda x: np.diag(2 * x),
+            forward_func=lambda x: x**2, jacobian_func=jac_fun
         )
         mlp_1 = configs.MLPConfig(
-            num_input_dim=1,
+            num_input_dim=2,
             num_hidden_dim=2,
             num_hidden_layers=2,
             num_output_dim=5,
@@ -46,7 +51,7 @@ class TestADEPTML(unittest.TestCase):
             models={"Physics_1": phy_1, "MLP_1": mlp_1},
         )
         model = HybridModel(config)
-        x = torch.rand((4, 4)).to(configs.DEVICE)
+        x = torch.rand((4, 2)).to(configs.DEVICE)
 
         y = model(x).detach().cpu().numpy()
         x = x.detach().cpu().numpy()
@@ -56,11 +61,10 @@ class TestADEPTML(unittest.TestCase):
     def test_ensemble_hybrid(self):
         phy_1 = configs.PhysicsConfig(
             forward_func=lambda x: x**2,
-            jacobian_func=lambda x: np.diag(2 * x),
+            jacobian_func=jac_fun,
         )
         phy_2 = configs.PhysicsConfig(
-            forward_func=lambda x: 10 * x,
-            jacobian_func=lambda x: np.diag(2 * x),
+            forward_func=lambda x: 10 * x, jacobian_func=jac_fun
         )
         config = configs.HybridConfig(
             models={"Physics_1": phy_1, "Physics_2": phy_2},
