@@ -2,6 +2,7 @@ import os
 import torch
 from torch.utils.tensorboard import SummaryWriter
 import numpy as np
+import time
 from adeptml import configs
 from adeptml import HybridModel
 
@@ -94,6 +95,7 @@ def train(
     with SummaryWriter(log_dir=current_data_dir) as writer:
         train_step_obj = train_step(model, optimizer, loss_fn, scheduler)
         for epoch in range(epochs):
+            t1 = time.time()
             train_batch_losses = []
             for data in train_loader:
                 x_batch = data[0]
@@ -115,15 +117,16 @@ def train(
                     args = None
                 loss = train_step_obj(x_batch, y_batch, args, test=True)
                 test_batch_losses.append(loss)
+            t2 = time.time()
             writer.add_scalar("Loss/test", np.mean(test_batch_losses), epoch)
             if print_training_loss:
                 print(
-                    f"Train Loss {np.mean(train_batch_losses)} Test Loss {np.mean(test_batch_losses)}"
+                    f"Epoch Time: {t2-t1}s Train Loss {np.mean(train_batch_losses)} Test Loss {np.mean(test_batch_losses)}"
                 )
             if epoch % save_frequency == 0:
                 torch.save(
                     model.state_dict(), "%s/Model_%d.pt" % (current_data_dir, epoch)
                 )
-        torch.save(model.state_dict(), current_data_dir + "/Model_final.pt")
+        torch.save(model.state_dict(), current_data_dir + "/model_final.pt")
 
     return model

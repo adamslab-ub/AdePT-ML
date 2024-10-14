@@ -24,8 +24,6 @@ author = "Manaswin Oddiraju"
 
 # The full version, including alpha/beta/rc tags
 release = "1.0"
-
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -53,6 +51,7 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = "alabaster"
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "/")
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
