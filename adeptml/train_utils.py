@@ -21,9 +21,8 @@ def train_step(
             if scheduler:
                 scheduler.step()
         else:
-            a = model.eval()
             with torch.no_grad():
-                yhat = a(x, args)
+                yhat = model.forward(x, args)
                 loss = loss_fn(yhat, y)
         return loss.item()
 
