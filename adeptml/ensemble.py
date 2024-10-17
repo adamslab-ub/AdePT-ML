@@ -25,7 +25,7 @@ class HybridModel(torch.nn.Module):
         self.config = config
         for model_name in config.models:
             if isinstance(config.models[model_name], torch.nn.Module):
-                self.models_nn[model_name] = config.models[model_name]().to(
+                self.models_nn[model_name] = config.models[model_name].to(
                     configs.DEVICE
                 )
             if isinstance(config.models[model_name], configs.PhysicsConfig):
