@@ -122,7 +122,7 @@ def train(
                 print(
                     f"Epoch Time: {t2-t1}s Train Loss {np.mean(train_batch_losses)} Test Loss {np.mean(test_batch_losses)}"
                 )
-            if epoch % save_frequency == 0:
+            if epoch % save_frequency == 0 and epoch != 0:
                 torch.save(
                     model.state_dict(), "%s/Model_%d.pt" % (current_data_dir, epoch)
                 )
