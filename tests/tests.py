@@ -130,8 +130,16 @@ class TestADEPTML(unittest.TestCase):
             optimizer=optimizer, step_size=30, gamma=0.95
         )
         loss_fn = torch.nn.MSELoss()
+        print("newtest")
         model = train(
-            model, train_loader, test_loader, optimizer, loss_fn, scheduler, "Test", 2
+            model,
+            train_loader,
+            test_loader,
+            optimizer,
+            loss_fn,
+            scheduler,
+            "Test/Test",
+            2,
         )
 
 

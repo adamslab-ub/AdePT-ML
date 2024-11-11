@@ -79,9 +79,9 @@ def train(
         Trained Hybrid Model.
     """
 
-    data_dir = os.path.join(os.getcwd(), f"Training_History_{filename}")
+    data_dir = os.path.join(os.getcwd(), f"{filename}")
     if not os.path.exists(data_dir):
-        os.system("mkdir %s" % data_dir)
+        os.makedirs(data_dir, exist_ok=True)
     try:
         runs = max(
             [int(f.name.split("_")[-1]) for f in os.scandir(data_dir) if f.is_dir()]
