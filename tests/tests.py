@@ -17,7 +17,8 @@ class TestADEPTML(unittest.TestCase):
             num_hidden_dim=2,
             num_hidden_layers=2,
             num_output_dim=5,
-            activation_functions="leakyrelu",
+            hidden_activation="leakyrelu",
+            output_activation="leakyrelu",
         )
         model = models.MLP(self.mlp_config).to(configs.DEVICE)
         x = torch.rand((4, 2)).to(configs.DEVICE)
@@ -45,7 +46,8 @@ class TestADEPTML(unittest.TestCase):
             num_hidden_dim=2,
             num_hidden_layers=2,
             num_output_dim=5,
-            activation_functions="leakyrelu",
+            hidden_activation="leakyrelu",
+            output_activation="leakyrelu",
         )
         config = configs.HybridConfig(
             models={"Physics_1": phy_1, "MLP_1": mlp_1},
@@ -96,7 +98,8 @@ class TestADEPTML(unittest.TestCase):
             num_hidden_dim=2,
             num_hidden_layers=2,
             num_output_dim=2,
-            activation_functions="leakyrelu",
+            hidden_activation="leakyrelu",
+            output_activation="leakyrelu",
         )
         phy_2 = configs.PhysicsConfig(
             forward_func=lambda x, y: 4 * x,

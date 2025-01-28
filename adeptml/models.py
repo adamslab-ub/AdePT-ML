@@ -34,7 +34,8 @@ class MLP(torch.nn.Module):
                 torch.nn.Linear(config.num_hidden_dim, config.num_hidden_dim)
             )
         self.linear_out = torch.nn.Linear(config.num_hidden_dim, config.num_output_dim)
-        self.nl1 = ACTIVATIONS[config.activation_functions]
+        self.nl1 = ACTIVATIONS[config.hidden_activation]
+        self.nl2 = ACTIVATIONS[config.output_activation]
 
     def forward(self, x):
         """
@@ -50,7 +51,7 @@ class MLP(torch.nn.Module):
             net = self.layers[i]
             out = self.nl1(net(out))
         out = self.linear_out(out)
-        return out
+        return self.nl2(out)
 
 
 class Physics(torch.autograd.Function):

@@ -37,7 +37,8 @@ class MLPConfig:
     num_hidden_dim: int
     num_output_dim: int
     num_hidden_layers: int
-    activation_functions: str
+    hidden_activation: str
+    output_activation: str
 
 
 @dataclasses.dataclass
