@@ -81,16 +81,25 @@ class TestADEPTML(unittest.TestCase):
         class cust_module(torch.nn.Module):
             def __init__(self):
                 super(cust_module, self).__init__()
-                self.input = torch.nn.Linear(10, 10)
-                self.output = torch.nn.Linear(10, 1)
 
             def forward(self, x):
-                return self.output(self.input(x))
+                return x**2 + 3 * x
 
-        model = cust_module().to(configs.DEVICE)
+        mlp_1 = configs.MLPConfig(
+            num_input_dim=10,
+            num_hidden_dim=2,
+            num_hidden_layers=2,
+            num_output_dim=5,
+            hidden_activation="leakyrelu",
+            output_activation="leakyrelu",
+        )
+        config = configs.HybridConfig(
+            models={"MLP_1": mlp_1, "Custom_Physics": cust_module},
+        )
+        model = HybridModel(config).to(configs.DEVICE)
         input = torch.rand((4, 10)).to(configs.DEVICE)
         output = model(input)
-        assert output.shape[-1] == 1
+        assert output.shape[-1] == 5
 
     def test_train_serial(self):
         mlp_config = configs.MLPConfig(
