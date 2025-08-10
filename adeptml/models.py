@@ -7,6 +7,7 @@ ACTIVATIONS = {
     "leakyrelu": torch.nn.LeakyReLU(),
     "sigmoid": torch.nn.Sigmoid(),
     "tanh": torch.nn.Tanh(),
+    "sin": torch.sin(),
 }
 
 
