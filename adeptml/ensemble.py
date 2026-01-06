@@ -29,7 +29,11 @@ class HybridModel(torch.nn.Module):
                     configs.DEVICE
                 )
             if isinstance(config.models[model_name], configs.PhysicsConfig):
-                self.models_physics[model_name] = models.Physics.apply
+                if config.models[model_name].use_vjp:
+                    self.models_physics[model_name] = models.Physics_VJP.apply
+                else:
+                    self.models_physics[model_name] = models.Physics.apply
+
             elif isinstance(config.models[model_name], configs.MLPConfig):
                 self.models_nn[model_name] = models.MLP(config.models[model_name]).to(
                     configs.DEVICE

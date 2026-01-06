@@ -57,6 +57,7 @@ class PhysicsConfig:
 
     forward_func: Callable[[torch.Tensor], torch.Tensor]
     jacobian_func: Callable[[torch.Tensor], torch.Tensor]
+    use_vjp: bool = False
 
 
 ModelConfig = Union[MLPConfig, PhysicsConfig]
