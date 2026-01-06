@@ -118,3 +118,70 @@ class Physics(torch.autograd.Function):
             grad_output = grad_output.unsqueeze(1)
             grad_final = torch.matmul(grad_output, jac_final).squeeze()
             return grad_final, None, None, None
+
+
+class Physics_VJP(torch.autograd.Function):
+    """Custom Autograd function to enable backpropagation on Custom Physics Models.
+
+    Attributes:
+    config: Instance of PhysicsConfig.
+    """
+
+    @staticmethod
+    def forward(
+        ctx,
+        x: torch.Tensor,
+        forward_fun: Callable,
+        jacobian_fun: Callable,
+        args: Optional[List[torch.Tensor]] = None,
+    ):
+        """
+        Function defining forward pass for the physics model.
+
+        :param ctx: Torch Autograd context object (https://pytorch.org/docs/stable/autograd.html#context-method-mixins)
+        :param x: Input tensor
+        :param forward_fun: Function which computes outputs of the physics function. Accepts numpy arrays as input.
+        :param jacobian_fun: Function which computes Jacobian / gradient of the physics function. Accepts numpy arrays as input.
+        :param args: List containing additional positional arguments (as tensors) to forward_fun. Gradients are not computed w.r.t these args.
+
+        :return: The output of forward_fun as a tensor.
+        """
+        if args:
+            ctx.save_for_backward(x, *args)
+        else:
+            ctx.save_for_backward(x)
+        ctx.jacobian_fun = jacobian_fun
+        x = x.detach().cpu().numpy()
+        if args != None:
+            args = [tmp_args.detach().cpu().numpy() for tmp_args in args]
+            out = forward_fun(x, *args)
+            out = torch.Tensor(out).to(configs.DEVICE)
+            return out
+        else:
+            out = forward_fun(x)
+            out = torch.Tensor(out).to(configs.DEVICE)
+            return out
+
+    @staticmethod
+    def backward(ctx, grad_output):
+        """
+        Function to compute gradient across the forward_fun during backpropagation.
+        """
+        input = ctx.saved_tensors[0]
+        args = ctx.saved_tensors[1:]
+        jacobian_fun = ctx.jacobian_fun
+        jac_final = None
+        if ctx.needs_input_grad[0]:
+            input = input.detach().cpu().numpy()
+            if args is not None:
+                args = [tmp_args.detach().cpu().numpy() for tmp_args in args]
+                grad_final = jacobian_fun(
+                    input, grad_output.detach().cpu().numpy(), *args
+                )
+            else:
+                grad_final = jacobian_fun(input, grad_output.detach().cpu().numpy())
+            # jac_final = torch.Tensor(jac_final).to(configs.DEVICE)
+            # jac_final = jac_final.reshape(input.shape[0], -1, input.shape[1])
+            # grad_output = grad_output.unsqueeze(1)
+            # grad_final = torch.matmul(grad_output, jac_final).squeeze()
+            return grad_final, None, None, None
