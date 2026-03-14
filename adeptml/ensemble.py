@@ -24,7 +24,7 @@ class HybridModel(torch.nn.Module):
 
         cfg = HybridConfig(models={"nn": mlp_cfg, "physics": phy_cfg})
         model = HybridModel(cfg)
-        out = model(x, phy_args=[bc, ic, sim_time])
+        out = model(x, phy_args=[arg1, arg2])
 
     Custom input routing — pass original input to the physics model regardless
     of what the NN outputs::
@@ -69,7 +69,7 @@ class HybridModel(torch.nn.Module):
 
         :param torch.Tensor x: Input tensor ``(batch, in_dim)``.
         :param phy_args: Extra positional arguments forwarded to physics
-            sub-models (e.g. ``[bc, ic, sim_time]``).  May be a list of
+            sub-models (e.g. ``[arg1, arg2]``).  May be a list of
             tensors or ``None``.
         :return: Output of the final model in the pipeline.
         :rtype: torch.Tensor

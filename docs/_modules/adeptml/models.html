@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>adeptml.models &#8212; AdePT-ML 1.0 documentation</title>
+    <title>adeptml.models &#8212; AdePT-ML 2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
-    <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../../_static/documentation_options.js?v=60dbed4a"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="canonical" href="/_modules/adeptml/models.html" />
@@ -261,9 +261,9 @@
 
 <span class="sd">    .. code-block:: python</span>
 
-<span class="sd">        output, pullback_fn = forward_func(x, *args)</span>
+<span class="sd">        y, pullback_fn = forward_func(x, *args)</span>
 <span class="sd">        # later, during backward:</span>
-<span class="sd">        (dloss_dx, *_) = pullback_fn(grad_output)</span>
+<span class="sd">        (dx, *_) = pullback_fn(grad_output)</span>
 
 <span class="sd">    The pullback closure is stored in the autograd context during the forward</span>
 <span class="sd">    pass and invoked during the backward pass.  No part of the physics forward</span>
@@ -278,9 +278,8 @@
 <span class="sd">    -------</span>
 <span class="sd">    Given the JAX physics module::</span>
 
-<span class="sd">        from Physics_Funcs import pp_model_gen_forward</span>
-<span class="sd">        # pp_model_gen_forward(mesh_params, bc, ic, sim_time)</span>
-<span class="sd">        #   -&gt; (T_normalized, pullback_fn)</span>
+<span class="sd">        from Funcs import physics</span>
+<span class="sd">        # physics(x)-&gt; (y_normalized, pullback_fn)</span>
 
 <span class="sd">    Configure and use as::</span>
 
@@ -288,7 +287,7 @@
 <span class="sd">        from adeptml.ensemble import HybridModel</span>
 
 <span class="sd">        phy_cfg = PhysicsConfig(</span>
-<span class="sd">            forward_func=pp_model_gen_forward,</span>
+<span class="sd">            forward_func=physics,</span>
 <span class="sd">            use_split_vjp=True,</span>
 <span class="sd">        )</span>
 <span class="sd">        hybrid_cfg = HybridConfig(models={&quot;nn&quot;: mlp_cfg, &quot;physics&quot;: phy_cfg})</span>
@@ -353,11 +352,11 @@
             <span class="n">grad_np</span> <span class="o">=</span> <span class="n">grad_output</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
             <span class="n">cotangents</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">pullback_fn</span><span class="p">(</span><span class="n">grad_np</span><span class="p">)</span>
             <span class="c1"># cotangents is a tuple ordered by the arguments of forward_fun;</span>
-            <span class="c1"># index 0 corresponds to x (mesh_params).</span>
-            <span class="n">dloss_dx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">cotangents</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">grad_output</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span>
+            <span class="c1"># index 0 corresponds to x.</span>
+            <span class="n">dx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">cotangents</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">grad_output</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span>
                 <span class="n">configs</span><span class="o">.</span><span class="n">DEVICE</span>
             <span class="p">)</span>
-            <span class="k">return</span> <span class="n">dloss_dx</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="n">dx</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span></div>
 </div>
 

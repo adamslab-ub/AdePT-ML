@@ -202,9 +202,9 @@ class Physics_SplitVJP(torch.autograd.Function):
 
     .. code-block:: python
 
-        output, pullback_fn = forward_func(x, *args)
+        y, pullback_fn = forward_func(x, *args)
         # later, during backward:
-        (dloss_dx, *_) = pullback_fn(grad_output)
+        (dx, *_) = pullback_fn(grad_output)
 
     The pullback closure is stored in the autograd context during the forward
     pass and invoked during the backward pass.  No part of the physics forward
@@ -219,9 +219,8 @@ class Physics_SplitVJP(torch.autograd.Function):
     -------
     Given the JAX physics module::
 
-        from Physics_Funcs import pp_model_gen_forward
-        # pp_model_gen_forward(mesh_params, bc, ic, sim_time)
-        #   -> (T_normalized, pullback_fn)
+        from Funcs import physics
+        # physics(x)-> (y_normalized, pullback_fn)
 
     Configure and use as::
 
@@ -229,7 +228,7 @@ class Physics_SplitVJP(torch.autograd.Function):
         from adeptml.ensemble import HybridModel
 
         phy_cfg = PhysicsConfig(
-            forward_func=pp_model_gen_forward,
+            forward_func=physics,
             use_split_vjp=True,
         )
         hybrid_cfg = HybridConfig(models={"nn": mlp_cfg, "physics": phy_cfg})
@@ -289,9 +288,9 @@ class Physics_SplitVJP(torch.autograd.Function):
             grad_np = grad_output.detach().cpu().numpy()
             cotangents = ctx.pullback_fn(grad_np)
             # cotangents is a tuple ordered by the arguments of forward_fun;
-            # index 0 corresponds to x (mesh_params).
-            dloss_dx = torch.tensor(cotangents[0], dtype=grad_output.dtype).to(
+            # index 0 corresponds to x.
+            dx = torch.tensor(cotangents[0], dtype=grad_output.dtype).to(
                 configs.DEVICE
             )
-            return dloss_dx, None, None
+            return dx, None, None
         return None, None, None

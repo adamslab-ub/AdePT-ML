@@ -83,12 +83,13 @@ class PhysicsConfig:
         expensive and intermediates are already cached by the underlying
         framework (e.g. JAX checkpointing via ``jax.checkpoint``).
 
-        Example usage with the JAX physics module::
+        Example usage with a JAX physics function::
 
-            from Physics_Funcs import pp_model_gen_forward
+            from my_physics import physics_forward
+            # physics_forward(x, *args) -> (y, pullback_fn)
 
             phy_cfg = PhysicsConfig(
-                forward_func=pp_model_gen_forward,
+                forward_func=physics_forward,
                 use_split_vjp=True,
             )
 

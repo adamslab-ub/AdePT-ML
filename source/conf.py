@@ -15,6 +15,10 @@ import sys
 
 sys.path.insert(0, os.path.abspath(".."))
 
+# Mock heavy dependencies so autodoc can import adeptml on RTD without
+# needing torch/numpy installed in the build environment.
+autodoc_mock_imports = ["torch", "numpy"]
+
 
 # -- Project information -----------------------------------------------------
 

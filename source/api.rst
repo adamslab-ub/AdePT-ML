@@ -45,12 +45,11 @@ backward pass:
 
   Example with a JAX solver::
 
-      from Physics_Funcs import pp_model_gen_forward
-      # pp_model_gen_forward(mesh_params, bc, ic, sim_time)
-      #   -> (T_normalised, pullback_fn)
+      from my_physics import physics_forward
+      # physics_forward(x, *args) -> (y, pullback_fn)
 
       phy_cfg = PhysicsConfig(
-          forward_func=pp_model_gen_forward,
+          forward_func=physics_forward,
           use_split_vjp=True,
       )
 
