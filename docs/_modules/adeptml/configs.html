@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>adeptml.configs &#8212; AdePT-ML 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="canonical" href="/_modules/adeptml/configs.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for adeptml.configs</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dataclasses</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+
+<span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+    <span class="n">DEVICE</span> <span class="o">=</span> <span class="s2">&quot;cuda:0&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">DEVICE</span> <span class="o">=</span> <span class="s2">&quot;cpu&quot;</span>
+
+
+<div class="viewcode-block" id="MLPConfig">
+<a class="viewcode-back" href="../../api.html#adeptml.configs.MLPConfig">[docs]</a>
+<span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MLPConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configuration class for the Multilayer Perceptron (MLP) model.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    num_input_dim : int</span>
+<span class="sd">        Number of input dimensions to the MLP.</span>
+
+<span class="sd">    num_hidden_dim : int</span>
+<span class="sd">        Number of hidden dimensions in each hidden layer.</span>
+
+<span class="sd">    num_output_dim : int</span>
+<span class="sd">        Number of output dimensions from the MLP.</span>
+
+<span class="sd">    num_hidden_layers : int</span>
+<span class="sd">        Number of hidden layers in the MLP.</span>
+
+<span class="sd">    hidden_activation : str</span>
+<span class="sd">        Activation function for hidden layers.</span>
+<span class="sd">        Choices are ``&quot;identity&quot;``, ``&quot;relu&quot;``, ``&quot;leakyrelu&quot;``, ``&quot;elu&quot;``,</span>
+<span class="sd">        ``&quot;sigmoid&quot;``, ``&quot;tanh&quot;``, ``&quot;sin&quot;``, ``&quot;softplus&quot;``, ``&quot;swish&quot;``.</span>
+
+<span class="sd">    output_activation : str</span>
+<span class="sd">        Activation function for the output layer.</span>
+<span class="sd">        Choices are ``&quot;identity&quot;``, ``&quot;relu&quot;``, ``&quot;leakyrelu&quot;``, ``&quot;elu&quot;``,</span>
+<span class="sd">        ``&quot;sigmoid&quot;``, ``&quot;tanh&quot;``, ``&quot;sin&quot;``, ``&quot;softplus&quot;``, ``&quot;swish&quot;``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">num_input_dim</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">num_hidden_dim</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">num_output_dim</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">num_hidden_layers</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">hidden_activation</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">output_activation</span><span class="p">:</span> <span class="nb">str</span></div>
+
+
+
+<div class="viewcode-block" id="PhysicsConfig">
+<a class="viewcode-back" href="../../api.html#adeptml.configs.PhysicsConfig">[docs]</a>
+<span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PhysicsConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configuration class for physics-related functions.</span>
+
+<span class="sd">    Three backpropagation modes are supported, selected via ``use_vjp`` and</span>
+<span class="sd">    ``use_split_vjp``:</span>
+
+<span class="sd">    **Jacobian mode** (default, ``use_vjp=False``, ``use_split_vjp=False``)</span>
+<span class="sd">        ``forward_func(x, *args) -&gt; ndarray``</span>
+<span class="sd">        ``jacobian_func(x, *args) -&gt; ndarray``  shape ``(batch, out, in)``</span>
+
+<span class="sd">        ``backward`` forms the VJP by multiplying ``grad_output @ jacobian``.</span>
+<span class="sd">        Use when the full Jacobian is cheap or already available.</span>
+
+<span class="sd">    **VJP mode** (``use_vjp=True``, ``use_split_vjp=False``)</span>
+<span class="sd">        ``forward_func(x, *args) -&gt; ndarray``</span>
+<span class="sd">        ``jacobian_func(x, grad_output, *args) -&gt; ndarray``  shape ``(batch, in)``</span>
+
+<span class="sd">        ``backward`` calls ``jacobian_func`` with the upstream gradient directly,</span>
+<span class="sd">        avoiding explicit Jacobian materialisation.  Use when a manual VJP is</span>
+<span class="sd">        cheaper than the full Jacobian.</span>
+
+<span class="sd">    **Split-VJP mode** (``use_split_vjp=True``)</span>
+<span class="sd">        ``forward_func(x, *args) -&gt; (ndarray, pullback_fn)``</span>
+
+<span class="sd">        ``forward_func`` returns both the output *and* a pullback closure (e.g.</span>
+<span class="sd">        the result of ``jax.vjp``).  The closure is stored during the forward</span>
+<span class="sd">        pass and called with ``grad_output`` during the backward pass without</span>
+<span class="sd">        re-running any part of the physics.  ``jacobian_func`` is not used and</span>
+<span class="sd">        may be omitted.</span>
+
+<span class="sd">        This is the most memory-efficient mode when the physics solver is</span>
+<span class="sd">        expensive and intermediates are already cached by the underlying</span>
+<span class="sd">        framework (e.g. JAX checkpointing via ``jax.checkpoint``).</span>
+
+<span class="sd">        Example usage with the JAX physics module::</span>
+
+<span class="sd">            from Physics_Funcs import pp_model_gen_forward</span>
+
+<span class="sd">            phy_cfg = PhysicsConfig(</span>
+<span class="sd">                forward_func=pp_model_gen_forward,</span>
+<span class="sd">                use_split_vjp=True,</span>
+<span class="sd">            )</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    forward_func : Callable</span>
+<span class="sd">        Physics forward function.  Signature depends on the chosen mode — see</span>
+<span class="sd">        above.</span>
+
+<span class="sd">    jacobian_func : Callable, optional</span>
+<span class="sd">        Jacobian or VJP function.  Required for Jacobian and VJP modes; not</span>
+<span class="sd">        used in split-VJP mode.</span>
+
+<span class="sd">    use_vjp : bool</span>
+<span class="sd">        Enable VJP mode.  Ignored when ``use_split_vjp=True``.</span>
+
+<span class="sd">    use_split_vjp : bool</span>
+<span class="sd">        Enable split-VJP mode.  Takes precedence over ``use_vjp``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">forward_func</span><span class="p">:</span> <span class="n">Callable</span>
+    <span class="n">jacobian_func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">use_vjp</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">use_split_vjp</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+
+
+<span class="n">ModelConfig</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">MLPConfig</span><span class="p">,</span> <span class="n">PhysicsConfig</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="HybridConfig">
+<a class="viewcode-back" href="../../api.html#adeptml.configs.HybridConfig">[docs]</a>
+<span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">HybridConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configuration for Hybrid (ensemble) models.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    models : dict</span>
+<span class="sd">        Maps model names (str) to a :class:`ModelConfig` or an existing</span>
+<span class="sd">        ``torch.nn.Module``.  Models are executed in insertion order.</span>
+
+<span class="sd">    model_inputs : dict, optional</span>
+<span class="sd">        By default the ensemble runs sequentially — the output of each model</span>
+<span class="sd">        becomes the input of the next.  Setting this dict overrides that</span>
+<span class="sd">        behaviour for specific models.</span>
+
+<span class="sd">        Keys are model names; values are dicts mapping *source model names* to</span>
+<span class="sd">        dimension selectors:</span>
+
+<span class="sd">        - ``None`` — pass the entire source tensor.</span>
+<span class="sd">        - ``[int, ...]`` — pass only the listed dimensions (``tensor[:, dims]``).</span>
+
+<span class="sd">        Use the special key ``&quot;Input&quot;`` to reference the original input to</span>
+<span class="sd">        :meth:`HybridModel.forward`.</span>
+
+<span class="sd">        Example — concatenate dims 0-3 of the original input with the full</span>
+<span class="sd">        output of ``&quot;mlp1&quot;``::</span>
+
+<span class="sd">            model_inputs={</span>
+<span class="sd">                &quot;physics&quot;: {</span>
+<span class="sd">                    &quot;Input&quot;: [0, 1, 2, 3],</span>
+<span class="sd">                    &quot;mlp1&quot;: None,</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">models</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ModelConfig</span> <span class="o">|</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">]</span>
+    <span class="n">model_inputs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">AdePT-ML</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Manaswin Oddiraju.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
