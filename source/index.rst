@@ -1,20 +1,28 @@
-.. Adept-ML documentation master file, created by
-   sphinx-quickstart on Fri May 24 16:47:28 2024.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. AdePT-ML documentation master file
 
 Welcome to AdePT-ML's documentation!
 =====================================
-This library is designed to streamline the training of neural network surrogates and to facilitate the integration of Torch modules with non-Torch modules to train Hybrid Physics Infused Neural Networks.
 
-.. API Tree:
-.. *********
+AdePT-ML is designed to streamline the training of hybrid physics-informed
+neural networks by seamlessly combining PyTorch modules with non-differentiable
+physics solvers written in any framework (NumPy, JAX, SciPy, etc.).
+
+Key features:
+
+- **Three physics backprop modes** — full Jacobian, manual VJP, or split-VJP
+  (pullback closure from ``jax.vjp``) — choose based on your solver's cost.
+- **Flexible input routing** — serial pipelines or arbitrary fan-in/fan-out
+  between sub-models via ``HybridConfig.model_inputs``.
+- **Gradient clipping** — built into the training loop for stable
+  physics-informed training.
+- **TensorBoard integration** — per-epoch train/test losses logged
+  automatically with auto-incrementing run directories.
+
 .. toctree::
   :maxdepth: 2
   :caption: Contents:
-  
-  api
 
+  api
 
 
 .. Indices and tables
